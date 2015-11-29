@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: mysql-pwm1cl.alwaysdata.net
+    database_port: null
+    database_name: pwm1cl_footdb
+    database_user: pwm1cl
+    database_password: pwm1cl
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 64d7fbfb08731f6bfefde6696f1d435b020321b0
