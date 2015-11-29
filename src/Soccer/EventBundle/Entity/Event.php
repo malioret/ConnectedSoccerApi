@@ -5,7 +5,7 @@ namespace Soccer\EventBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use SubwayBuddy\UserBundle\Entity\User;
-
+use Soccer\EventBundle\Entity\UserEvent;
 /**
  * Event
  *
@@ -148,7 +148,7 @@ class Event
     
     
      /**
-    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User", mappedBy="events")
+    * @ORM\OneToMany(targetEntity="Soccer\EventBundle\Entity\UserEvent", mappedBy="event")
     */
      private $amis; 
     
@@ -156,19 +156,19 @@ class Event
      
    
     
+  
     
-    
-      public function addAmi(User $ami)
+      public function addAmi(UserEvent $ami)
       {
          if (!$this->amis->contains($ami)) {
         $this->amis[] = $ami;
-        $ami->addEvent($this);
+       // $ami->addEvent($this);
         return $this;
              
          }
       }
 
-  public function removeAmi(User $ami)
+  public function removeAmi(UserEvent $ami)
   {
     $this->amis->removeElement($ami);
     $ami->removeAmi($this);

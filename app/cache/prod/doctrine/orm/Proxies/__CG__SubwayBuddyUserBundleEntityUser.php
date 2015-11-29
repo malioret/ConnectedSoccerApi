@@ -64,10 +64,10 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
+            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
         }
 
-        return array('__isInitialized__', 'id', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
+        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
     }
 
     /**
@@ -186,6 +186,61 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getId', array());
 
         return parent::getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNom($nom)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNom', array($nom));
+
+        return parent::setNom($nom);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNom()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNom', array());
+
+        return parent::getNom();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addEvent(\Soccer\EventBundle\Entity\UserEvent $event)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addEvent', array($event));
+
+        return parent::addEvent($event);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeEvent(\Soccer\EventBundle\Entity\Event $event)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeEvent', array($event));
+
+        return parent::removeEvent($event);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEvents()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEvents', array());
+
+        return parent::getEvents();
     }
 
     /**

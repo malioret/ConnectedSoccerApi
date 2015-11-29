@@ -8,6 +8,7 @@ use FOS\RestBundle\View\View as Vieww;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 use Soccer\EventBundle\Entity\Event;
+use Soccer\EventBundle\Entity\UserEvent;
 use SubwayBuddy\UserBundle\Entity\User;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -42,31 +43,76 @@ class AssignerEventController extends FOSRestController
             ->getManager()
             ->getRepository('SoccerEventBundle:Event')
             ;  
+             $repositoryUserEvent = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:UserEvent')
+            ;  
             
             $event=$repositoryEvent->findOneById($paramFetcher->get('id'));
         
           $em = $this->getDoctrine()->getManager();
 
       
-        if($paramFetcher->get('id_user'))
+        
+        //On verifie que l'affectation n'a pas déja été faite : 
+        $userEventTest=$repositoryUserEvent->findByEventAndUser($paramFetcher->get('id'), $paramFetcher->get('id_user'));
+        
+      //  var_dump($userEventTest);
+         $view = Vieww::create();
+        if($paramFetcher->get('id_user') && $userEventTest==null)
         {
              $repository = $this
             ->getDoctrine()
             ->getManager()
             ->getRepository('SubwayBuddyUserBundle:User')
-            ;  
+            ; 
+             
+              $repositoryStatus = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:Status')
+            ; 
 
-      
+      //on recupere l'utilisateur
          $user=$repository->findOneById($paramFetcher->get('id_user'));
-            $event->addAmi($user); 
+         
+         
+       
+         
+         
+         
+         //on recupere le status par defaut (en attente) 
+          $status=$repositoryStatus->findOneById(2);
+           
+         //on crée une relation User -> Event  (JOINTURE)
+         $userEvent=new UserEvent();
+         $userEvent->setEvent($event);
+         $userEvent->setUser($user);
+         $userEvent->setStatus($status);
+         
+         
+         
+            //on lie les relations (on associe à la jointure)
+            $event->addAmi($userEvent); 
+            $user->addEvent($userEvent);
             
-        }
-        $view = Vieww::create();
+            
+           
         
+            $em->persist($userEvent);
            $em->persist($event);
+           $em->persist($user);
             $em->flush();
             $view->setData($event)->setStatusCode(200);
             return $view;
+        }
+        else
+        {
+            $view->setData("false")->setStatusCode(400);
+            return $view;
+        }
+        
        
     }
 

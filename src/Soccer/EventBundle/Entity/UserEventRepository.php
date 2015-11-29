@@ -10,6 +10,27 @@ namespace Soccer\EventBundle\Entity;
  */
 class UserEventRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+       public function findByEventAndUser($event, $user)
+    {
+      $query= $this
+        ->createQueryBuilder('u')
+         ->where("u.event= :event and u.user=:user ")
+           ->setParameter(':event',$event)
+           ->setParameter(':user',$user)
+         ->orderBy('u.id', 'ASC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
+    
 }
 
 

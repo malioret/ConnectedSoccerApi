@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Soccer\EventBundle\Entity\Event;
+use Soccer\EventBundle\Entity\UserEvent;
 
 
 /**
@@ -78,13 +79,13 @@ class User extends BaseUser
     
     
     /**
-   * @ORM\ManyToMany(targetEntity="Soccer\EventBundle\Entity\Event", inversedBy="amis")
+   * @ORM\OneToMany(targetEntity="Soccer\EventBundle\Entity\UserEvent", mappedBy="user")
    */
      private $events; 
      
     
     
-    public function addEvent(Event $event)
+    public function addEvent(UserEvent $event)
   {
     if (!$this->events->contains($event)) {  
     $this->events[] = $event;
