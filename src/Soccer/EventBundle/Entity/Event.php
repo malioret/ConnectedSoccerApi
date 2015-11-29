@@ -153,6 +153,11 @@ class Event
      private $amis; 
     
     
+     
+   
+    
+    
+    
       public function addAmi(User $ami)
       {
          if (!$this->amis->contains($ami)) {

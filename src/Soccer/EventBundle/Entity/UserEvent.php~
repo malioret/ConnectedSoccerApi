@@ -41,19 +41,19 @@ class UserEvent
     
     
       /**
-   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Event", inversedBy="users")
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Event")
    * @ORM\JoinColumn(nullable=false)
    */
   private $event;
 
   /**
-   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="events")
+   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
    * @ORM\JoinColumn(nullable=false)
    */
   private $user;
     
     
-    /**
+          /**
    * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Status")
    * @ORM\JoinColumn(nullable=false)
    */
@@ -108,29 +108,5 @@ class UserEvent
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set status
-     *
-     * @param \Soccer\EventBundle\Entity\Status $status
-     *
-     * @return UserEvent
-     */
-    public function setStatus(\Soccer\EventBundle\Entity\Status $status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return \Soccer\EventBundle\Entity\Status
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 }
