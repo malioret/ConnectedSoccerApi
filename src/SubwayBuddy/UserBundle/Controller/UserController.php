@@ -78,6 +78,16 @@ class UserController extends FOSRestController
         
         $user->setEnabled(true);
         $user->addRole('ROLE_API');
+        
+        
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        // Va récupérer toutes les lignes de la table 'event'.
+        $profil = $em->getRepository('SubwayBuddyUserBundle:Profil')->findOneById(1);
+        
+        $user->setProfil($profil);
+        
         $view = Vieww::create();
         $errors = $this->get('validator')->validate($user, array('Registration'));
         if (count($errors) == 0) {

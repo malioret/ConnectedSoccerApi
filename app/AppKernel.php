@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new Soccer\EventBundle\SoccerEventBundle(),
             new Soccer\LandingBundle\SoccerLandingBundle(),
+            new Soccer\TeamBundle\SoccerTeamBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

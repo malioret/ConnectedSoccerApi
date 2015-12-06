@@ -40,6 +40,7 @@ class UserEvent
     
     
     
+    
       /**
    * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Event", inversedBy="amis")
    * @ORM\JoinColumn(nullable=false)
@@ -133,6 +134,7 @@ class UserEvent
     {
         return $this->status;
     }
+    
     
     
     

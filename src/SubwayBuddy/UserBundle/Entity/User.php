@@ -7,7 +7,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Soccer\EventBundle\Entity\Event;
 use Soccer\EventBundle\Entity\UserEvent;
-
+use SubwayBuddy\UserBundle\Entity\Profil;
 
 /**
  * User
@@ -34,11 +34,25 @@ class User extends BaseUser
      * 
      */
     private $nom;
+    
+    /**
+   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\Profil")
+   */
+    private $profil;
+    
+    /**
+     * @var name
+     *
+     * @ORM\Column(name="niveau", type="integer" , length=3)
+     * 
+     */
+    private $niveau;
 
     public function __construct()
     {
         parent::__construct();
          $this->events = new ArrayCollection();
+         $this->amis = new ArrayCollection();
     }
 
     /**
@@ -77,12 +91,61 @@ class User extends BaseUser
         return $this->nom;
     }
     
+    /**
+     * Set niveau
+     *
+     * @param integer $niveau
+     *
+     * @return integer
+     */
+    public function setNiveau($niveau)
+    {
+        $this->niveau = $niveau;
+    }
+
+    /**
+     * Get niveau
+     *
+     * @return integer
+     */
+    public function getNiveau()
+    {
+        return $this->niveau;
+    }
+    
+    /**
+     * Set profil
+     *
+     * @param string $profil
+     *
+     * @return string
+     */
+    public function setProfil(Profil $profil)
+    {
+        $this->profil = $profil;
+    }
+
+    /**
+     * Get profil
+     *
+     * @return string
+     */
+    public function getProfil()
+    {
+        return $this->profil;
+    }
     
     /**
    * @ORM\OneToMany(targetEntity="Soccer\EventBundle\Entity\UserEvent", mappedBy="user")
    */
      private $events; 
      
+    
+     /**
+   * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+   */
+     private $amis; 
+    
     
     
     public function addEvent(UserEvent $event)
@@ -94,7 +157,7 @@ class User extends BaseUser
     return $this;
   }
 
-  public function removeEvent(Event $event)
+  public function removeEvent(UserEvent $event)
   {
     $this->events->removeElement($event);
 
@@ -106,6 +169,29 @@ class User extends BaseUser
     return $this->events;
   }
   
+    
+    
+    
+    public function addAmi(User $ami)
+  {
+    if (!$this->amis->contains($ami)) {  
+    $this->events[] = $event;
+    }
+    
+    return $this;
+  }
+
+  public function removeAmi(User $ami)
+  {
+    $this->amis->removeElement($ami);
+
+    
+  }
+
+  public function getAmis()
+  {
+    return $this->amis;
+  }
     
     
     

@@ -1,0 +1,5 @@
+teams:
+    type:   rest
+    resource:   "@SoccerTeamBundle/Controller/TeamController.php"
+    
+

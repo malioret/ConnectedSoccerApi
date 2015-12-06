@@ -6,6 +6,9 @@ recherche:
     type:   rest
     resource:   "@SubwayBuddyUserBundle/Controller/RechercheController.php"
     
+friends:
+    type:   rest
+    resource:   "@SubwayBuddyUserBundle/Controller/FriendsController.php"
     
 
 

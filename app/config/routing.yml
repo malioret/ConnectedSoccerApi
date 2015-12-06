@@ -1,3 +1,7 @@
+soccer_team:
+    resource: "@SoccerTeamBundle/Resources/config/routing.yml"
+    prefix:   /
+
 soccer_landing:
     resource: "@SoccerLandingBundle/Resources/config/routing.yml"
     prefix:   /

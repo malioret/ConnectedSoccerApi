@@ -171,7 +171,7 @@ class Event
   public function removeAmi(UserEvent $ami)
   {
     $this->amis->removeElement($ami);
-    $ami->removeAmi($this);
+   // $ami->removeAmi($this);
 
     
   }

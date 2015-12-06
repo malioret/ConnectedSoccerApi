@@ -1,0 +1,3 @@
+soccer_team_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SoccerTeamBundle:Default:index }

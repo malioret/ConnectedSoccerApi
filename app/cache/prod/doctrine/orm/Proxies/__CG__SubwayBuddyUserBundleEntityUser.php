@@ -224,7 +224,7 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
-    public function removeEvent(\Soccer\EventBundle\Entity\Event $event)
+    public function removeEvent(\Soccer\EventBundle\Entity\UserEvent $event)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeEvent', array($event));
