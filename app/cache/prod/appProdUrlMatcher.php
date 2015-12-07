@@ -27,9 +27,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
-        // soccer_landing_test
-        if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_landing_test')), array (  '_controller' => 'Soccer\\LandingBundle\\Controller\\DefaultController::indexAction',));
+        if (0 === strpos($pathinfo, '/hello')) {
+            // soccer_team_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_team_homepage')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\DefaultController::indexAction',));
+            }
+
+            // soccer_landing_test
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_landing_test')), array (  '_controller' => 'Soccer\\LandingBundle\\Controller\\DefaultController::indexAction',));
+            }
+
         }
 
         // soccer_landing_home

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\EventBundle\Entity\UserEvent;
+use Soccer\TeamBundle\Entity\Team;
 /**
  * Event
  *
@@ -56,6 +57,7 @@ class Event
     {
        
          $this->amis = new ArrayCollection();
+         $this->teams = new ArrayCollection();
     }
    
 
@@ -152,7 +154,10 @@ class Event
     */
      private $amis; 
     
-    
+       /**
+    * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Team")
+    */
+     private $teams; 
      
    
     
@@ -181,5 +186,30 @@ class Event
     return $this->amis;
   }
      
+    
+    
+      public function addTeam(Team $team)
+      {
+         if (!$this->teams->contains($team)) {
+        $this->teams[] = $team;
+       // $ami->addEvent($this);
+        return $this;
+             
+         }
+      }
+
+  public function removeTeam(Team $team)
+  {
+    $this->teams->removeElement($team);
+   // $ami->removeAmi($this);
+
+    
+  }
+
+  public function getTeams()
+  {
+    return $this->teams;
+  }
+    
     
 }

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Soccer\EventBundle\Entity\Event;
 use Soccer\EventBundle\Entity\UserEvent;
 use SubwayBuddy\UserBundle\Entity\Profil;
+use Soccer\TeamBundle\Entity\Poste;
 
 /**
  * User
@@ -36,9 +37,9 @@ class User extends BaseUser
     private $nom;
     
     /**
-   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\Profil")
+   * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\Profil")
    */
-    private $profil;
+    private $profils;
     
     /**
      * @var name
@@ -53,6 +54,7 @@ class User extends BaseUser
         parent::__construct();
          $this->events = new ArrayCollection();
          $this->amis = new ArrayCollection();
+         $this->profils = new ArrayCollection();
     }
 
     /**
@@ -113,28 +115,7 @@ class User extends BaseUser
         return $this->niveau;
     }
     
-    /**
-     * Set profil
-     *
-     * @param string $profil
-     *
-     * @return string
-     */
-    public function setProfil(Profil $profil)
-    {
-        $this->profil = $profil;
-    }
-
-    /**
-     * Get profil
-     *
-     * @return string
-     */
-    public function getProfil()
-    {
-        return $this->profil;
-    }
-    
+   
     /**
    * @ORM\OneToMany(targetEntity="Soccer\EventBundle\Entity\UserEvent", mappedBy="user")
    */
@@ -145,6 +126,12 @@ class User extends BaseUser
    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User")
    */
      private $amis; 
+     
+     
+      /**
+   * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Poste")
+   */
+     private $postes;  
     
     
     
@@ -170,6 +157,52 @@ class User extends BaseUser
   }
   
     
+    
+     public function addPoste(Poste $poste)
+  {
+    if (!$this->postes->contains($poste)) {  
+    $this->postes[] = $poste;
+    }
+    
+    return $this;
+  }
+
+  public function removePoste(Poste $poste)
+  {
+    $this->postes->removePoste($poste);
+
+    
+  }
+
+  public function getPostes()
+  {
+    return $this->postes;
+  }
+    
+    
+    
+    
+    public function addProfil(Profil $profil)
+  {
+    if (!$this->profils->contains($profil)) {  
+    $this->profils[] = $profil;
+    }
+    
+    return $this;
+  }
+
+  public function removeProfil(Profil $profil)
+  {
+    $this->profils->removeElement($profil);
+
+    
+  }
+
+  public function getProfils()
+  {
+    return $this->profils;
+  }
+  
     
     
     public function addAmi(User $ami)

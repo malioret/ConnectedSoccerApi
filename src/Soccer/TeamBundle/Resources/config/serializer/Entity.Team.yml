@@ -1,0 +1,9 @@
+Soccer\TeamBundle\Entity\Team:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        nom:
+            expose: true
+       
+       
