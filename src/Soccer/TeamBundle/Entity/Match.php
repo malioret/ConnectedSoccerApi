@@ -77,7 +77,11 @@ class Match
      private $team2; 
     
     
-    
+       
+       /**
+    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="match")
+    */
+     private $buts; 
 
     /**
      * Get id
@@ -230,5 +234,46 @@ class Match
     public function getDate()
     {
         return $this->date;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->buts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add but
+     *
+     * @param \Soccer\TeamBundle\Entity\But $but
+     *
+     * @return Match
+     */
+    public function addBut(\Soccer\TeamBundle\Entity\But $but)
+    {
+        $this->buts[] = $but;
+
+        return $this;
+    }
+
+    /**
+     * Remove but
+     *
+     * @param \Soccer\TeamBundle\Entity\But $but
+     */
+    public function removeBut(\Soccer\TeamBundle\Entity\But $but)
+    {
+        $this->buts->removeElement($but);
+    }
+
+    /**
+     * Get buts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getButs()
+    {
+        return $this->buts;
     }
 }

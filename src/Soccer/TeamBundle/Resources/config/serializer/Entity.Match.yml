@@ -1,0 +1,8 @@
+Soccer\TeamBundle\Entity\Match:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        
+       
+       

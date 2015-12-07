@@ -9,6 +9,8 @@ use Soccer\EventBundle\Entity\Event;
 use Soccer\EventBundle\Entity\UserEvent;
 use SubwayBuddy\UserBundle\Entity\Profil;
 use Soccer\TeamBundle\Entity\Poste;
+use Soccer\TeamBundle\Entity\But;
+
 
 /**
  * User
@@ -54,7 +56,7 @@ class User extends BaseUser
         parent::__construct();
          $this->events = new ArrayCollection();
          $this->amis = new ArrayCollection();
-         $this->profils = new ArrayCollection();
+         $this->buts = new ArrayCollection();
     }
 
     /**
@@ -133,7 +135,10 @@ class User extends BaseUser
    */
      private $postes;  
     
-    
+       /**
+    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="user")
+    */
+     private $buts; 
     
     public function addEvent(UserEvent $event)
   {
@@ -224,6 +229,28 @@ class User extends BaseUser
   public function getAmis()
   {
     return $this->amis;
+  }
+    
+   
+    public function addBut(But $but)
+  {
+    if (!$this->buts->contains($but)) {  
+    $this->buts[] = $but;
+    }
+    
+    return $this;
+  }
+
+  public function removeBut(But $but)
+  {
+    $this->buts->removeElement($but);
+
+    
+  }
+
+  public function getButs()
+  {
+    return $this->buts;
   }
     
     

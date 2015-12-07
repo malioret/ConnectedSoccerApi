@@ -1,0 +1,94 @@
+<?php
+
+namespace Soccer\TeamBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+/**
+ * But
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class But
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nombre", type="integer")
+    
+     */
+    protected $nombre;
+
+
+
+
+     /**
+    * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="buts")
+    */
+     private $user; 
+     
+     
+     
+     /**
+    * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Match", inversedBy="buts")
+    */
+     private $match; 
+     
+     
+       /**
+    * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\event", inversedBy="buts")
+    */
+     private $event; 
+     
+     
+     
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+  
+
+    /**
+     * Set user
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\User $user
+     *
+     * @return But
+     */
+    public function setUser(\SubwayBuddy\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

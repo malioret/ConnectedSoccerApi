@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\EventBundle\Entity\UserEvent;
 use Soccer\TeamBundle\Entity\Team;
+use Soccer\TeamBundle\Entity\But;
+
+
 /**
  * Event
  *
@@ -53,11 +56,21 @@ class Event
     private $date;
    
    
+   
+      
+       /**
+    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="event")
+    */
+     private $buts; 
+   
+   
+   
     public function __construct()
     {
        
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
+          $this->buts = new ArrayCollection();
     }
    
 
@@ -210,6 +223,31 @@ class Event
   {
     return $this->teams;
   }
+  
+      
+      public function addBut(But $but)
+      {
+         if (!$this->buts->contains($but)) {
+        $this->buts[] = $but;
+       // $ami->addEvent($this);
+        return $this;
+             
+         }
+      }
+
+  public function removeBut(But $but)
+  {
+    $this->buts->removeElement($but);
+   // $ami->removeAmi($this);
+
+    
+  }
+
+  public function getButs()
+  {
+    return $this->buts;
+  }
+    
     
     
 }

@@ -77,7 +77,11 @@ class Match
      private $team2; 
     
     
-    
+       
+       /**
+    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="user")
+    */
+     private $buts; 
 
     /**
      * Get id
@@ -206,5 +210,29 @@ class Match
     public function getTeam2()
     {
         return $this->team2;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Match
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }
