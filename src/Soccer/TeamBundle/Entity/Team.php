@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\EventBundle\Entity\UserEvent;
+use Soccer\EventBundle\Entity\Event;
 /**
  * Event
  *
@@ -39,6 +40,7 @@ class Team
     {
        
          $this->joueurs = new ArrayCollection();
+           $this->events = new ArrayCollection();
     }
    
 
@@ -84,9 +86,16 @@ class Team
 
     
      /**
-    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="teams" )
     */
-     private $joueur; 
+     private $joueurs; 
+    
+    
+    
+     /**
+    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User", mappedBy="teams" )
+    */
+     private $events; 
     
     
      
@@ -98,7 +107,7 @@ class Team
       {
          if (!$this->joueurs->contains($joueur)) {
         $this->joueurs[] = $joueur;
-       // $ami->addEvent($this);
+        $joueur->addTeam($this);
         return $this;
              
          }
@@ -107,7 +116,7 @@ class Team
   public function removeJoueur(User $joueur)
   {
     $this->joueurs->removeElement($joueur);
-   // $ami->removeAmi($this);
+    $joueur->removeTeam($this);
 
     
   }
@@ -116,6 +125,34 @@ class Team
   {
     return $this->joueurs;
   }
+  
+  
+  
+      public function addEvent(Event $event)
+      {
+         if (!$this->events->contains($event)) {
+        $this->events[] = $event;
+        //$joueur->addTeam($this);
+        return $this;
+             
+         }
+      }
+
+  public function removeEvent(Event $event)
+  {
+    $this->events->removeElement($event);
+   // $joueur->removeTeam($this);
+
+    
+  }
+
+  public function getEvents()
+  {
+    return $this->events;
+  }
+  
+  
+  
      
     
 }

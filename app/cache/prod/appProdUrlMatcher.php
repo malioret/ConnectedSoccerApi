@@ -468,6 +468,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     }
                     not_post_event:
 
+                    // post_event_team
+                    if (0 === strpos($pathinfo, '/api/events/teams') && preg_match('#^/api/events/teams(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_event_team;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_event_team')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\EventController::postEventTeamAction',  '_format' => 'json',));
+                    }
+                    not_post_event_team:
+
                 }
 
                 if (0 === strpos($pathinfo, '/api/assigner/event')) {
@@ -492,6 +503,42 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         return $this->mergeDefaults(array_replace($matches, array('_route' => 'delete_assigner_event')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\AssignerEventController::deleteAssignerEventAction',  '_format' => 'json',));
                     }
                     not_delete_assigner_event:
+
+                }
+
+                if (0 === strpos($pathinfo, '/api/teams')) {
+                    // get_teams
+                    if (preg_match('#^/api/teams(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_teams;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_teams')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\TeamController::getTeamsAction',  '_format' => 'json',));
+                    }
+                    not_get_teams:
+
+                    // get_team
+                    if (preg_match('#^/api/teams/(?P<team>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_team;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_team')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\TeamController::getTeamAction',  '_format' => 'json',));
+                    }
+                    not_get_team:
+
+                    // post_team
+                    if (preg_match('#^/api/teams(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_team;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_team')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\TeamController::postTeamAction',  '_format' => 'json',));
+                    }
+                    not_post_team:
 
                 }
 

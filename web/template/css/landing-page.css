@@ -35,7 +35,9 @@ h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
-    background: url(../img/intro-bg.jpg) no-repeat center center;
+    /*background: url(../img/intro-bg.jpg) no-repeat center center;*/
+   /* background: url( http://urbansoccer.us/wp-content/uploads/2012/07/3942001_thumbnail1-e1342166048320.jpg) no-repeat center center;*/
+     background: url(../img/conn.png) no-repeat center center;
     background-size: cover;
 }
 

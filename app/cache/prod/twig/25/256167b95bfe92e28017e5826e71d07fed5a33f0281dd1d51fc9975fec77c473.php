@@ -15,8 +15,8 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_e3b36de3d910d512b721178722c1aa32742484bc3615dbb5968d1000d536db39 = $this->env->getExtension("native_profiler");
-        $__internal_e3b36de3d910d512b721178722c1aa32742484bc3615dbb5968d1000d536db39->enter($__internal_e3b36de3d910d512b721178722c1aa32742484bc3615dbb5968d1000d536db39_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SoccerLandingBundle:Home:home.html.twig"));
+        $__internal_cc7b5e26756be643f50b7c08e6449d05af9379a3b0b104143504a6bce1d74227 = $this->env->getExtension("native_profiler");
+        $__internal_cc7b5e26756be643f50b7c08e6449d05af9379a3b0b104143504a6bce1d74227->enter($__internal_cc7b5e26756be643f50b7c08e6449d05af9379a3b0b104143504a6bce1d74227_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SoccerLandingBundle:Home:home.html.twig"));
 
         // line 1
         echo " <!-- Header -->
@@ -27,20 +27,9 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
             <div class=\"row\">
                 <div class=\"col-lg-12\">
                     <div class=\"intro-message\">
-                        <h1>Landing Page</h1>
-                        <h3>A Template by Start Bootstrap</h3>
-                        <hr class=\"intro-divider\">
-                        <ul class=\"list-inline intro-social-buttons\">
-                            <li>
-                                <a href=\"https://twitter.com/SBootstrap\" class=\"btn btn-default btn-lg\"><i class=\"fa fa-twitter fa-fw\"></i> <span class=\"network-name\">Twitter</span></a>
-                            </li>
-                            <li>
-                                <a href=\"https://github.com/IronSummitMedia/startbootstrap\" class=\"btn btn-default btn-lg\"><i class=\"fa fa-github fa-fw\"></i> <span class=\"network-name\">Github</span></a>
-                            </li>
-                            <li>
-                                <a href=\"#\" class=\"btn btn-default btn-lg\"><i class=\"fa fa-linkedin fa-fw\"></i> <span class=\"network-name\">Linkedin</span></a>
-                            </li>
-                        </ul>
+                        <h1>Connected Soccer</h1>
+                        <h3>Jouez au foot connecté !</h3>
+                        <h3>Organisez vos matchs rapidement</h3>
                     </div>
                 </div>
             </div>
@@ -61,14 +50,14 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
                 <div class=\"col-lg-5 col-sm-6\">
                     <hr class=\"section-heading-spacer\">
                     <div class=\"clearfix\"></div>
-                    <h2 class=\"section-heading\">Death to the Stock Photo:<br>Special Thanks</h2>
+                    <h2 class=\"section-heading\">Créez des événements<br></h2>
                     <p class=\"lead\">A special thanks to <a target=\"_blank\" href=\"http://join.deathtothestockphoto.com/\">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
                 </div>
                 <div class=\"col-lg-5 col-lg-offset-2 col-sm-6\">
                     <img class=\"img-responsive\" src=\"";
-        // line 47
-        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("template/img/ipad.png"), "html", null, true);
-        echo "\" alt=\"\">
+        // line 36
+        echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("template/img/event.png"), "html", null, true);
+        echo "\" style=\"height:500px;\" alt=\"\">
                 </div>
             </div>
 
@@ -152,7 +141,7 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
     </div>
     <!-- /.banner -->";
         
-        $__internal_e3b36de3d910d512b721178722c1aa32742484bc3615dbb5968d1000d536db39->leave($__internal_e3b36de3d910d512b721178722c1aa32742484bc3615dbb5968d1000d536db39_prof);
+        $__internal_cc7b5e26756be643f50b7c08e6449d05af9379a3b0b104143504a6bce1d74227->leave($__internal_cc7b5e26756be643f50b7c08e6449d05af9379a3b0b104143504a6bce1d74227_prof);
 
     }
 
@@ -168,7 +157,7 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
 
     public function getDebugInfo()
     {
-        return array (  70 => 47,  22 => 1,);
+        return array (  59 => 36,  22 => 1,);
     }
 }
 /*  <!-- Header -->*/
@@ -179,20 +168,9 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
 /*             <div class="row">*/
 /*                 <div class="col-lg-12">*/
 /*                     <div class="intro-message">*/
-/*                         <h1>Landing Page</h1>*/
-/*                         <h3>A Template by Start Bootstrap</h3>*/
-/*                         <hr class="intro-divider">*/
-/*                         <ul class="list-inline intro-social-buttons">*/
-/*                             <li>*/
-/*                                 <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>*/
-/*                             </li>*/
-/*                             <li>*/
-/*                                 <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>*/
-/*                             </li>*/
-/*                             <li>*/
-/*                                 <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>*/
-/*                             </li>*/
-/*                         </ul>*/
+/*                         <h1>Connected Soccer</h1>*/
+/*                         <h3>Jouez au foot connecté !</h3>*/
+/*                         <h3>Organisez vos matchs rapidement</h3>*/
 /*                     </div>*/
 /*                 </div>*/
 /*             </div>*/
@@ -213,11 +191,11 @@ class __TwigTemplate_a93b0052731a7b0d673cffe6b04104a922fe5b8ccb641fff6c9ce87d6ee
 /*                 <div class="col-lg-5 col-sm-6">*/
 /*                     <hr class="section-heading-spacer">*/
 /*                     <div class="clearfix"></div>*/
-/*                     <h2 class="section-heading">Death to the Stock Photo:<br>Special Thanks</h2>*/
+/*                     <h2 class="section-heading">Créez des événements<br></h2>*/
 /*                     <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>*/
 /*                 </div>*/
 /*                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">*/
-/*                     <img class="img-responsive" src="{{asset('template/img/ipad.png')}}" alt="">*/
+/*                     <img class="img-responsive" src="{{asset('template/img/event.png')}}" style="height:500px;" alt="">*/
 /*                 </div>*/
 /*             </div>*/
 /* */

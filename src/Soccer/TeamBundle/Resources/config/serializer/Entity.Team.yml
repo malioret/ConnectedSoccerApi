@@ -5,5 +5,7 @@ Soccer\TeamBundle\Entity\Team:
             expose: true
         nom:
             expose: true
+        joueurs:
+            expose: true
        
        

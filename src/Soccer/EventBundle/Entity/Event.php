@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\EventBundle\Entity\UserEvent;
+use Soccer\EventBundle\Entity\Event;
 use Soccer\TeamBundle\Entity\Team;
 use Soccer\TeamBundle\Entity\But;
 
@@ -168,7 +169,7 @@ class Event
      private $amis; 
     
        /**
-    * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Team")
+    * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Team", inversedBy="events")
     */
      private $teams; 
      
@@ -205,7 +206,7 @@ class Event
       {
          if (!$this->teams->contains($team)) {
         $this->teams[] = $team;
-       // $ami->addEvent($this);
+        $team->addEvent($this);
         return $this;
              
          }
@@ -214,7 +215,7 @@ class Event
   public function removeTeam(Team $team)
   {
     $this->teams->removeElement($team);
-   // $ami->removeAmi($this);
+    $team->removeEvent($this);
 
     
   }

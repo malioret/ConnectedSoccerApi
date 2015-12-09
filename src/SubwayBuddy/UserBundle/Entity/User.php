@@ -10,7 +10,7 @@ use Soccer\EventBundle\Entity\UserEvent;
 use SubwayBuddy\UserBundle\Entity\Profil;
 use Soccer\TeamBundle\Entity\Poste;
 use Soccer\TeamBundle\Entity\But;
-
+use Soccer\TeamBundle\Entity\Team;
 
 /**
  * User
@@ -57,6 +57,7 @@ class User extends BaseUser
          $this->events = new ArrayCollection();
          $this->amis = new ArrayCollection();
          $this->buts = new ArrayCollection();
+         $this->teams = new ArrayCollection();
     }
 
     /**
@@ -134,6 +135,13 @@ class User extends BaseUser
    * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Poste")
    */
      private $postes;  
+     
+     
+     /**
+   * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Team", mappedBy="joueurs")
+   */
+     private $teams; 
+     
     
        /**
     * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="user")
@@ -252,6 +260,32 @@ class User extends BaseUser
   {
     return $this->buts;
   }
+  
+  
+   public function addTeam(Team $team)
+  {
+    if (!$this->teams->contains($but)) {  
+    $this->teams[] = $team;
+    }
+    
+    return $this;
+  }
+
+  public function removeTeam(Team $team)
+  {
+    $this->teams->removeElement($team);
+
+    
+  }
+
+  public function getTeams()
+  {
+    return $this->teams;
+  }
+  
+  
+  
+  
     
     
     
