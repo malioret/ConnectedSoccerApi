@@ -10,7 +10,10 @@ friends:
     type:   rest
     resource:   "@SubwayBuddyUserBundle/Controller/FriendsController.php"
     
-
+notifications:
+    type:   rest
+    resource:   "@SubwayBuddyUserBundle/Controller/NotificationController.php"
+    
 
     
 website_test:

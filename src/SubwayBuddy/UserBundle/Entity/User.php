@@ -58,6 +58,7 @@ class User extends BaseUser
          $this->amis = new ArrayCollection();
          $this->buts = new ArrayCollection();
          $this->teams = new ArrayCollection();
+          $this->profils = new ArrayCollection();
     }
 
     /**

@@ -31,6 +31,27 @@ class UserEventRepository extends \Doctrine\ORM\EntityRepository
       ;
     }
     
+    
+    
+      public function findByUserParticipe($event)
+    {
+      $query= $this
+        ->createQueryBuilder('u')
+         ->where("u.event= :event and u.status=1 ")
+           ->setParameter(':event',$event)
+         ->orderBy('u.id', 'ASC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
+    
 }
 
 

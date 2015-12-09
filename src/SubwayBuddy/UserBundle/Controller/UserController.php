@@ -64,7 +64,9 @@ class UserController extends FOSRestController
      * @RequestParam(name="email", nullable=false, strict=true, description="Email.")
      * @RequestParam(name="nom", nullable=false, strict=true, description="Nom.")
      * @RequestParam(name="password", nullable=false, strict=true, description="Plain Password.")
-     *
+     * @RequestParam(name="niveau",nullable=true, description="Niveau.")
+     * 
+     * 
      * @return View
      */
     public function postUserAction(ParamFetcher $paramFetcher)
@@ -86,7 +88,20 @@ class UserController extends FOSRestController
         // Va récupérer toutes les lignes de la table 'event'.
         $profil = $em->getRepository('SubwayBuddyUserBundle:Profil')->findOneById(1);
         
-        $user->setProfil($profil);
+        $user->addProfil($profil);
+        
+        
+        
+        if($paramFetcher->get('niveau')!=null)
+        {
+            $user->setNiveau($paramFetcher->get('niveau'));
+        }
+        else
+        {
+            $user->setNiveau(1);
+        }
+        
+        
         
         $view = Vieww::create();
         $errors = $this->get('validator')->validate($user, array('Registration'));
@@ -95,7 +110,8 @@ class UserController extends FOSRestController
             $view->setData($user)->setStatusCode(200);
             return $view;
         } else {
-            $view = $this->getErrorsView($errors);
+            $view->setData("false")->setStatusCode(400);
+           // $view = $this->getErrorsView($errors);
             return $view;
         }
     }

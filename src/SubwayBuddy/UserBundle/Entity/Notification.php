@@ -46,13 +46,13 @@ class Notification
     private $date;
     
     
-       
+    //l'utilisateur qui envoi   
        /**
     * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
     */
      private $user1; 
      
-          
+    //L'utilisateur qui recoit      
        /**
     * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
     */

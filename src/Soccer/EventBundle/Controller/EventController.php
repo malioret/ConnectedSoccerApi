@@ -8,6 +8,7 @@ use FOS\RestBundle\View\View as Vieww;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 use Soccer\EventBundle\Entity\Event;
+use Soccer\EventBundle\Entity\UserEvent;
 use Soccer\TeamBundle\Entity\Team;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
@@ -79,6 +80,49 @@ class EventController extends FOSRestController
             return $view;
         
     }
+
+
+
+    /** @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam(name="id", nullable=false, strict=true, description="id.")
+     * 
+     * @return View
+     */
+    public function postEventUserAction(ParamFetcher $paramFetcher)
+    {
+        $event=new Event();
+        
+         $em = $this->getDoctrine()->getManager();
+
+        
+       $em = $this->getDoctrine()->getManager();
+        
+        // Va récupérer toutes les lignes de la table 'event'.
+        $event = $em->getRepository('SoccerEventBundle:Event')->findOneById($paramFetcher->get('id'));
+
+       $userEvent=$em->getRepository('SoccerEventBundle:UserEvent')-> findByUserParticipe($event);
+       
+       $users=array();
+       
+       foreach($userEvent as $u)
+       {
+           $users[]=$u->getUser();
+       }
+        $view = Vieww::create();
+      
+        
+           $em->persist($event);
+            $em->flush();
+            $view->setData($event)->setStatusCode(200);
+            return $view;
+        
+    }
+
+
+
+
+
     
     /** @param ParamFetcher $paramFetcher Paramfetcher
      *

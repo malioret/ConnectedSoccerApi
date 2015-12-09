@@ -64,10 +64,10 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
+            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'profils', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'niveau', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'amis', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'postes', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'teams', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'buts', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
+        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'profils', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'niveau', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'amis', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'postes', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'teams', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'buts', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
     }
 
     /**
@@ -213,6 +213,28 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
+    public function setNiveau($niveau)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNiveau', array($niveau));
+
+        return parent::setNiveau($niveau);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNiveau()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNiveau', array());
+
+        return parent::getNiveau();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function addEvent(\Soccer\EventBundle\Entity\UserEvent $event)
     {
 
@@ -241,6 +263,171 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEvents', array());
 
         return parent::getEvents();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addPoste(\Soccer\TeamBundle\Entity\Poste $poste)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPoste', array($poste));
+
+        return parent::addPoste($poste);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removePoste(\Soccer\TeamBundle\Entity\Poste $poste)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePoste', array($poste));
+
+        return parent::removePoste($poste);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPostes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPostes', array());
+
+        return parent::getPostes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addProfil(\SubwayBuddy\UserBundle\Entity\Profil $profil)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addProfil', array($profil));
+
+        return parent::addProfil($profil);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeProfil(\SubwayBuddy\UserBundle\Entity\Profil $profil)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeProfil', array($profil));
+
+        return parent::removeProfil($profil);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getProfils()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getProfils', array());
+
+        return parent::getProfils();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addAmi(\SubwayBuddy\UserBundle\Entity\User $ami)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addAmi', array($ami));
+
+        return parent::addAmi($ami);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeAmi(\SubwayBuddy\UserBundle\Entity\User $ami)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeAmi', array($ami));
+
+        return parent::removeAmi($ami);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAmis()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAmis', array());
+
+        return parent::getAmis();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addBut(\Soccer\TeamBundle\Entity\But $but)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBut', array($but));
+
+        return parent::addBut($but);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeBut(\Soccer\TeamBundle\Entity\But $but)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBut', array($but));
+
+        return parent::removeBut($but);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getButs()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getButs', array());
+
+        return parent::getButs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addTeam(\Soccer\TeamBundle\Entity\Team $team)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addTeam', array($team));
+
+        return parent::addTeam($team);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeTeam(\Soccer\TeamBundle\Entity\Team $team)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeTeam', array($team));
+
+        return parent::removeTeam($team);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTeams()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTeams', array());
+
+        return parent::getTeams();
     }
 
     /**

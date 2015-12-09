@@ -54,6 +54,21 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_event_homepage')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\DefaultController::indexAction',));
         }
 
+        // subwaybuddy_user_notification_getnotifications
+        if (rtrim($pathinfo, '/') === '') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_subwaybuddy_user_notification_getnotifications;
+            }
+
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'subwaybuddy_user_notification_getnotifications');
+            }
+
+            return array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_route' => 'subwaybuddy_user_notification_getnotifications',);
+        }
+        not_subwaybuddy_user_notification_getnotifications:
+
         // subwaybuddy_user_recherche_getusers
         if (rtrim($pathinfo, '/') === '') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
@@ -429,6 +444,42 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                 }
                 not_get_friends:
 
+                if (0 === strpos($pathinfo, '/api/notifications')) {
+                    // get_notifications
+                    if (preg_match('#^/api/notifications(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_notifications;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notifications')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_format' => 'json',));
+                    }
+                    not_get_notifications:
+
+                    // get_notification
+                    if (preg_match('#^/api/notifications/(?P<notification>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_notification;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationAction',  '_format' => 'json',));
+                    }
+                    not_get_notification:
+
+                    // post_notification_user
+                    if (0 === strpos($pathinfo, '/api/notifications/users') && preg_match('#^/api/notifications/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_notification_user;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_notification_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::postNotificationUserAction',  '_format' => 'json',));
+                    }
+                    not_post_notification_user:
+
+                }
+
                 // website_test
                 if (0 === strpos($pathinfo, '/api/test') && preg_match('#^/api/test(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'website_test')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\DefaultController::indexAction',  '_format' => 'json',));
@@ -468,6 +519,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     }
                     not_post_event:
 
+                    // post_event_user
+                    if (0 === strpos($pathinfo, '/api/events/users') && preg_match('#^/api/events/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_event_user;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_event_user')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\EventController::postEventUserAction',  '_format' => 'json',));
+                    }
+                    not_post_event_user:
+
                     // post_event_team
                     if (0 === strpos($pathinfo, '/api/events/teams') && preg_match('#^/api/events/teams(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
                         if ($this->context->getMethod() != 'POST') {
@@ -492,6 +554,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_assigner_event')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\AssignerEventController::putAssignerEventAction',  '_format' => 'json',));
                     }
                     not_put_assigner_event:
+
+                    // put_assigner_event_list
+                    if (0 === strpos($pathinfo, '/api/assigner/event/list') && preg_match('#^/api/assigner/event/list(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'PUT') {
+                            $allow[] = 'PUT';
+                            goto not_put_assigner_event_list;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_assigner_event_list')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\AssignerEventController::putAssignerEventListAction',  '_format' => 'json',));
+                    }
+                    not_put_assigner_event_list:
 
                     // delete_assigner_event
                     if (preg_match('#^/api/assigner/event(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
