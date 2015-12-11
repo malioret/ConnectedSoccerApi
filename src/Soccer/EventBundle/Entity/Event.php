@@ -57,6 +57,14 @@ class Event
     private $date;
    
    
+   /**
+     * @var nombreJoueurs
+     *
+     * @ORM\Column(name="nombreJoueurs", type="integer")
+     *
+     */
+    private $nombreJoueurs;
+   
    
       
        /**
@@ -251,4 +259,28 @@ class Event
     
     
     
+
+    /**
+     * Set nombreJoueurs
+     *
+     * @param integer $nombreJoueurs
+     *
+     * @return Event
+     */
+    public function setNombreJoueurs($nombreJoueurs)
+    {
+        $this->nombreJoueurs = $nombreJoueurs;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreJoueurs
+     *
+     * @return integer
+     */
+    public function getNombreJoueurs()
+    {
+        return $this->nombreJoueurs;
+    }
 }

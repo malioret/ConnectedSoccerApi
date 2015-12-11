@@ -57,6 +57,7 @@ class EventController extends FOSRestController
      * @RequestParam(name="nom", nullable=false, strict=true, description="nom.")
      * @RequestParam(name="lieu", nullable=false, strict=true, description="lieu.")
      * @RequestParam(name="date", nullable=false, strict=true, description="date.")
+     * @RequestParam(name="nombreJoueurs", nullable=false, strict=true, description="date.")
      *
      * @return View
      */
@@ -70,7 +71,7 @@ class EventController extends FOSRestController
         $event->setNom($paramFetcher->get('nom'));
         $event->setLieu($paramFetcher->get('lieu'));
         $event->setDate($paramFetcher->get('date'));
-       
+        $event->setNombreJoueurs($paramFetcher->get('nombreJoueurs'));
         $view = Vieww::create();
       
         
@@ -102,19 +103,42 @@ class EventController extends FOSRestController
         $event = $em->getRepository('SoccerEventBundle:Event')->findOneById($paramFetcher->get('id'));
 
        $userEvent=$em->getRepository('SoccerEventBundle:UserEvent')-> findByUserParticipe($event);
-       
-       $users=array();
-       
-       foreach($userEvent as $u)
-       {
-           $users[]=$u->getUser();
-       }
+      
         $view = Vieww::create();
       
         
-           $em->persist($event);
-            $em->flush();
-            $view->setData($event)->setStatusCode(200);
+          
+            $view->setData($userEvent)->setStatusCode(200);
+            return $view;
+        
+    }
+
+
+     /** @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam(name="id", nullable=false, strict=true, description="id.")
+     * 
+     * @return View
+     */
+    public function postEventUserAttenteAction(ParamFetcher $paramFetcher)
+    {
+        $event=new Event();
+        
+         $em = $this->getDoctrine()->getManager();
+
+        
+       $em = $this->getDoctrine()->getManager();
+        
+        // Va récupérer toutes les lignes de la table 'event'.
+        $event = $em->getRepository('SoccerEventBundle:Event')->findOneById($paramFetcher->get('id'));
+
+       $userEvent=$em->getRepository('SoccerEventBundle:UserEvent')-> findByUserParticipeAndAttente($event);
+      
+        $view = Vieww::create();
+      
+        
+          
+            $view->setData($userEvent)->setStatusCode(200);
             return $view;
         
     }
@@ -130,6 +154,7 @@ class EventController extends FOSRestController
      * @RequestParam(name="nom", nullable=false, strict=true, description="nom.")
      * @RequestParam(name="lieu", nullable=false, strict=true, description="lieu.")
      * @RequestParam(name="date", nullable=false, strict=true, description="date.")
+     * @RequestParam(name="nombreJoueurs", nullable=false, strict=true, description="nombres joueurs.")
      *
      * @return View
      */
@@ -143,7 +168,7 @@ class EventController extends FOSRestController
         $event->setNom($paramFetcher->get('nom'));
         $event->setLieu($paramFetcher->get('lieu'));
         $event->setDate($paramFetcher->get('date'));
-       
+        $event->setNombreJoueurs($paramFetcher->get('nombreJoueurs'));
        
         $em = $this->getDoctrine()->getManager();
 

@@ -9,4 +9,6 @@ Soccer\EventBundle\Entity\Event:
             expose: true
         date:
             expose: true
+        nombreJoueurs:
+            expose: true
        

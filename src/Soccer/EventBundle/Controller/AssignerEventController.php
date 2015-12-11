@@ -131,6 +131,90 @@ class AssignerEventController extends FOSRestController
     }
 
 
+     /**
+     * Update a User from the submitted data by ID.<br/>
+     *
+     *
+     * 
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam(name="id", nullable=false, strict=true, description="id.")
+     * @RequestParam(name="id_user", nullable=false, strict=true, description="id_user.")
+     * @RequestParam(name="id_status", nullable=false, strict=true, description="reponse.")
+     * 
+     *
+     * @return View
+     */
+    public function putUpdateAssignerEventAction(ParamFetcher $paramFetcher)
+    {
+        
+             $repositoryEvent = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:Event')
+            ;  
+             $repositoryUserEvent = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:UserEvent')
+            ;  
+            
+            $event=$repositoryEvent->findOneById($paramFetcher->get('id'));
+        
+          $em = $this->getDoctrine()->getManager();
+
+      
+        
+        //On verifie que l'affectation a été faite : 
+        $userEventTest=$repositoryUserEvent->findByEventAndUser($paramFetcher->get('id'), $paramFetcher->get('id_user'));
+        
+      //  var_dump($userEventTest);
+         $view = Vieww::create();
+        if($paramFetcher->get('id_user') && $userEventTest!=null)
+        {
+             $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SubwayBuddyUserBundle:User')
+            ; 
+             
+              $repositoryStatus = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:Status')
+            ; 
+            
+         
+      //on recupere l'utilisateur
+         $user=$repository->findOneById($paramFetcher->get('id_user'));
+         
+         //on recupere le status par defaut (en attente) 
+          $status=$repositoryStatus->findOneById($paramFetcher->get('id_status'));
+           
+         //on crée une relation User -> Event  (JOINTURE)
+         $userEvent=$repositoryUserEvent->findByEventAndUser($event, $user);
+         $userEvent->setStatus($status);
+         
+         
+
+            $em->persist($userEvent);
+           $em->persist($event);
+           $em->persist($user);
+            $em->flush();
+            
+            $view->setData($event)->setStatusCode(200);
+            return $view;
+        }
+        else
+        {
+            $view->setData("false")->setStatusCode(400);
+            return $view;
+        }
+        
+       
+    }
+
+
 
     /**
      * Update a User from the submitted data by ID.<br/>
@@ -186,6 +270,13 @@ class AssignerEventController extends FOSRestController
             ->getManager()
             ->getRepository('SubwayBuddyUserBundle:User')
             ; 
+            
+            
+            $repositoryTypeNotification = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SubwayBuddyUserBundle:TypeNotification')
+            ; 
              
               $repositoryStatus = $this
             ->getDoctrine()
@@ -229,6 +320,9 @@ class AssignerEventController extends FOSRestController
         $notification->setEvent($event);
         $notification->setDate(new \DateTime());
         
+        $typeNotif=$repositoryTypeNotification->findOneById(2);
+        $notification->setType($typeNotif);
+        
         
             $em->persist($userEvent);
            $em->persist($event);
@@ -263,6 +357,7 @@ class AssignerEventController extends FOSRestController
         
        
     }
+
 
 
 

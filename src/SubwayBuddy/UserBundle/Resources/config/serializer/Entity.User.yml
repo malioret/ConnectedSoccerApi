@@ -7,3 +7,18 @@ SubwayBuddy\UserBundle\Entity\User:
             expose: true
         email:
             expose: true
+        nom:
+            expose: true
+        niveau:
+            expose: true    
+        postes:
+            expose: true
+        profils:
+            expose: true
+        password:
+            expose: false
+
+
+            
+            
+       

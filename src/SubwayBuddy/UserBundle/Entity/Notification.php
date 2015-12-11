@@ -69,6 +69,13 @@ class Notification
      private $match; 
 
   
+      /**
+   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\TypeNotification")
+   * 
+   */
+  private $type;
+  
+  
     /**
      * Get id
      *
@@ -229,5 +236,29 @@ class Notification
     public function getMatch()
     {
         return $this->match;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\TypeNotification $type
+     *
+     * @return Notification
+     */
+    public function setType(\SubwayBuddy\UserBundle\Entity\TypeNotification $type = null)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\TypeNotification
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

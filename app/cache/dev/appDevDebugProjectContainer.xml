@@ -4,7 +4,7 @@
     <parameter key="kernel.root_dir">/home/ubuntu/workspace/ConnectedSoccerPhp/app</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
-    <parameter key="kernel.name">app</parameter>
+    <parameter key="kernel.name">ap_</parameter>
     <parameter key="kernel.cache_dir">/home/ubuntu/workspace/ConnectedSoccerPhp/app/cache/dev</parameter>
     <parameter key="kernel.logs_dir">/home/ubuntu/workspace/ConnectedSoccerPhp/app/logs</parameter>
     <parameter key="kernel.bundles" type="collection">
@@ -2580,7 +2580,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5665720f2c3f25.23627822</argument>
+            <argument>566aaed071e2d2.05494143</argument>
           </service>
         </argument>
       </argument>
@@ -2907,7 +2907,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>5665720f2c3f25.23627822</argument>
+            <argument>566aaed071e2d2.05494143</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -5684,7 +5684,7 @@
                       <argument key="Doctrine\Bundle\DoctrineBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\FrameworkExtraBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
                       <argument key="SubwayBuddy\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/src/SubwayBuddy/UserBundle/Resources/config/serializer</argument>
-                      <argument key="FOS\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/friendsofsymfony/user-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/src/SubwayBuddy/UserBundle/Resources/config/serializer/FOSUB</argument>
                       <argument key="Sonata\CoreBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
                       <argument key="Sonata\BlockBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
                       <argument key="Knp\Bundle\MenuBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/knplabs/knp-menu-bundle/Resources/config/serializer</argument>
@@ -5718,7 +5718,7 @@
                       <argument key="Doctrine\Bundle\DoctrineBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\FrameworkExtraBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
                       <argument key="SubwayBuddy\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/src/SubwayBuddy/UserBundle/Resources/config/serializer</argument>
-                      <argument key="FOS\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/friendsofsymfony/user-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/src/SubwayBuddy/UserBundle/Resources/config/serializer/FOSUB</argument>
                       <argument key="Sonata\CoreBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
                       <argument key="Sonata\BlockBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
                       <argument key="Knp\Bundle\MenuBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/knplabs/knp-menu-bundle/Resources/config/serializer</argument>
@@ -5752,7 +5752,7 @@
                       <argument key="Doctrine\Bundle\DoctrineBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\FrameworkExtraBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
                       <argument key="SubwayBuddy\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/src/SubwayBuddy/UserBundle/Resources/config/serializer</argument>
-                      <argument key="FOS\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/friendsofsymfony/user-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/src/SubwayBuddy/UserBundle/Resources/config/serializer/FOSUB</argument>
                       <argument key="Sonata\CoreBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
                       <argument key="Sonata\BlockBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
                       <argument key="Knp\Bundle\MenuBundle">/home/ubuntu/workspace/ConnectedSoccerPhp/vendor/knplabs/knp-menu-bundle/Resources/config/serializer</argument>

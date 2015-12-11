@@ -519,16 +519,30 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     }
                     not_post_event:
 
-                    // post_event_user
-                    if (0 === strpos($pathinfo, '/api/events/users') && preg_match('#^/api/events/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if ($this->context->getMethod() != 'POST') {
-                            $allow[] = 'POST';
-                            goto not_post_event_user;
-                        }
+                    if (0 === strpos($pathinfo, '/api/events/users')) {
+                        // post_event_user
+                        if (preg_match('#^/api/events/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if ($this->context->getMethod() != 'POST') {
+                                $allow[] = 'POST';
+                                goto not_post_event_user;
+                            }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_event_user')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\EventController::postEventUserAction',  '_format' => 'json',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_event_user')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\EventController::postEventUserAction',  '_format' => 'json',));
+                        }
+                        not_post_event_user:
+
+                        // post_event_user_attente
+                        if (0 === strpos($pathinfo, '/api/events/users/attentes') && preg_match('#^/api/events/users/attentes(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if ($this->context->getMethod() != 'POST') {
+                                $allow[] = 'POST';
+                                goto not_post_event_user_attente;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_event_user_attente')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\EventController::postEventUserAttenteAction',  '_format' => 'json',));
+                        }
+                        not_post_event_user_attente:
+
                     }
-                    not_post_event_user:
 
                     // post_event_team
                     if (0 === strpos($pathinfo, '/api/events/teams') && preg_match('#^/api/events/teams(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
@@ -543,18 +557,29 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
                 }
 
-                if (0 === strpos($pathinfo, '/api/assigner/event')) {
-                    // put_assigner_event
-                    if (preg_match('#^/api/assigner/event(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if ($this->context->getMethod() != 'PUT') {
-                            $allow[] = 'PUT';
-                            goto not_put_assigner_event;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_assigner_event')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\AssignerEventController::putAssignerEventAction',  '_format' => 'json',));
+                // put_assigner_event
+                if (0 === strpos($pathinfo, '/api/assigner/event') && preg_match('#^/api/assigner/event(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PUT') {
+                        $allow[] = 'PUT';
+                        goto not_put_assigner_event;
                     }
-                    not_put_assigner_event:
 
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_assigner_event')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\AssignerEventController::putAssignerEventAction',  '_format' => 'json',));
+                }
+                not_put_assigner_event:
+
+                // put_update_assigner_event
+                if (0 === strpos($pathinfo, '/api/update/assigner/event') && preg_match('#^/api/update/assigner/event(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'PUT') {
+                        $allow[] = 'PUT';
+                        goto not_put_update_assigner_event;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_update_assigner_event')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\AssignerEventController::putUpdateAssignerEventAction',  '_format' => 'json',));
+                }
+                not_put_update_assigner_event:
+
+                if (0 === strpos($pathinfo, '/api/assigner/event')) {
                     // put_assigner_event_list
                     if (0 === strpos($pathinfo, '/api/assigner/event/list') && preg_match('#^/api/assigner/event/list(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
                         if ($this->context->getMethod() != 'PUT') {

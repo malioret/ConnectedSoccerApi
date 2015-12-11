@@ -64,10 +64,10 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams');
     }
 
     /**
@@ -351,6 +351,28 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getButs', array());
 
         return parent::getButs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNombreJoueurs($nombreJoueurs)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNombreJoueurs', array($nombreJoueurs));
+
+        return parent::setNombreJoueurs($nombreJoueurs);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNombreJoueurs()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNombreJoueurs', array());
+
+        return parent::getNombreJoueurs();
     }
 
 }

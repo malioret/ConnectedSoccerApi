@@ -46,13 +46,13 @@ class Notification
     private $date;
     
     
-       
+    //l'utilisateur qui envoi   
        /**
     * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
     */
      private $user1; 
      
-          
+    //L'utilisateur qui recoit      
        /**
     * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
     */
@@ -68,6 +68,13 @@ class Notification
     */
      private $match; 
 
+  
+      /**
+   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\TypeNotification")
+   * 
+   */
+  private $type;
+  
   
     /**
      * Get id
@@ -86,4 +93,148 @@ class Notification
  
     
     
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Notification
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Notification
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set user1
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\User $user1
+     *
+     * @return Notification
+     */
+    public function setUser1(\SubwayBuddy\UserBundle\Entity\User $user1 = null)
+    {
+        $this->user1 = $user1;
+
+        return $this;
+    }
+
+    /**
+     * Get user1
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\User
+     */
+    public function getUser1()
+    {
+        return $this->user1;
+    }
+
+    /**
+     * Set user2
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\User $user2
+     *
+     * @return Notification
+     */
+    public function setUser2(\SubwayBuddy\UserBundle\Entity\User $user2 = null)
+    {
+        $this->user2 = $user2;
+
+        return $this;
+    }
+
+    /**
+     * Get user2
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\User
+     */
+    public function getUser2()
+    {
+        return $this->user2;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \Soccer\EventBundle\Entity\Event $event
+     *
+     * @return Notification
+     */
+    public function setEvent(\Soccer\EventBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Soccer\EventBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Set match
+     *
+     * @param \Soccer\TeamBundle\Entity\Match $match
+     *
+     * @return Notification
+     */
+    public function setMatch(\Soccer\TeamBundle\Entity\Match $match = null)
+    {
+        $this->match = $match;
+
+        return $this;
+    }
+
+    /**
+     * Get match
+     *
+     * @return \Soccer\TeamBundle\Entity\Match
+     */
+    public function getMatch()
+    {
+        return $this->match;
+    }
 }
