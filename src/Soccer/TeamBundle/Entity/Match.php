@@ -24,13 +24,6 @@ class Match
     protected $id;
 
 
-/**
-     * @var string
-     *
-     * @ORM\Column(name="score", type="string",  length=255)
-     *
-     */
-    private $score;
     
     
 /**
@@ -76,12 +69,12 @@ class Match
     */
      private $team2; 
     
-    
        
-       /**
-    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="match")
-    */
-     private $buts; 
+    /**
+   * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\UserMatch", mappedBy="match")
+   */
+     private $joueurs;
+      
 
     /**
      * Get id
@@ -114,7 +107,7 @@ class Match
      */
     public function getScore()
     {
-        return $this->score;
+        return $this->scoreTeam1." - ".scoreTeam2;
     }
 
     /**
@@ -240,40 +233,30 @@ class Match
      */
     public function __construct()
     {
-        $this->buts = new \Doctrine\Common\Collections\ArrayCollection();
+         $this->joueurs = new ArrayCollection();
+         
     }
 
-    /**
-     * Add but
-     *
-     * @param \Soccer\TeamBundle\Entity\But $but
-     *
-     * @return Match
-     */
-    public function addBut(\Soccer\TeamBundle\Entity\But $but)
-    {
-        $this->buts[] = $but;
-
-        return $this;
+     public function addJoueur(UserMatch $joueur)
+  {
+    if (!$this->joueurs->contains($joueur)) {  
+    $this->joueurs[] = $joueur;
     }
+    
+    return $this;
+  }
 
-    /**
-     * Remove but
-     *
-     * @param \Soccer\TeamBundle\Entity\But $but
-     */
-    public function removeBut(\Soccer\TeamBundle\Entity\But $but)
-    {
-        $this->buts->removeElement($but);
-    }
+  public function removeJoueur(UserMatch $joueur)
+  {
+    $this->joueurs->removeElement($joueur);
 
-    /**
-     * Get buts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getButs()
-    {
-        return $this->buts;
-    }
+    
+  }
+
+  public function getJoueurs()
+  {
+    return $this->joueurs;
+  }
+  
+   
 }

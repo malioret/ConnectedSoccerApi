@@ -56,7 +56,7 @@ class User extends BaseUser
         parent::__construct();
          $this->events = new ArrayCollection();
          $this->amis = new ArrayCollection();
-         $this->buts = new ArrayCollection();
+           $this->matchs = new ArrayCollection();
          $this->teams = new ArrayCollection();
           $this->profils = new ArrayCollection();
     }
@@ -125,6 +125,11 @@ class User extends BaseUser
    */
      private $events; 
      
+     
+    /**
+   * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\UserMatch", mappedBy="user")
+   */
+     private $matchs;
     
      /**
    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User")
@@ -143,11 +148,182 @@ class User extends BaseUser
    */
      private $teams; 
      
+     
+     
+     
+     /*
+     
+    ************ STATISTIQUES ************
+     */
+     
+        /**
+     * @var name
+     *
+     * @ORM\Column(name="buts", type="integer")
+     * 
+     */
+  private $buts;
+    
+     
+     /**
+     * @var name
+     *
+     * @ORM\Column(name="passeDecisives", type="integer")
+     * 
+     */
+  private $passeDecisives;
+  
+  
+  
+     /**
+     * @var name
+     *
+     * @ORM\Column(name="cartonsRouge", type="integer")
+     * 
+     */
+  private $cartonsRouge;
+  
+  
+    /**
+     * @var name
+     *
+     * @ORM\Column(name="cartonsJaune", type="integer")
+     * 
+     */
+  private $cartonsJaune;
+   
+
+ 
+     
+     
+      /**
+     * 
+     *
+     * @return UserMatch
+     */
+    public function setButs($buts)
+    {
+        $this->buts = $buts;
+
+        return $this;
+    }
+
+    /**
+     * Get buts
+     *
+     * @return integer
+     */
+    public function getButs()
+    {
+        return $this->buts;
+    }
+
+    /**
+     * Get buts
+     *
+     * @return integer
+     */
+    public function addBut($nb)
+    {
+        $this->buts+=$nb;
+        return $this->buts;
+    }
+    
+    
     
        /**
-    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="user")
+     * 
+     *
+     * @return UserMatch
+     */
+    public function setPasseDecisives($passes)
+    {
+        $this->passeDecisives = $passes;
+
+        return $this;
+    }
+
+    /**
+     * Get buts
+     *
+     * @return integer
+     */
+    public function getPasseDecisives()
+    {
+        return $this->passeDecisives;
+    }
+            
+            
+      public function addPasseDecisives($nb)
+    {
+        $this->passeDecisives+=$nb;
+        return $this->passeDecisives;
+    }        
+    
+    
+    
+       /**
+     * 
+     *
+     * @return UserMatch
+     */
+    public function setCartonsRouge($carton)
+    {
+        $this->cartonsRouges = $carton;
+
+        return $this;
+    }
+
+    /**
+     * Get buts
+     *
+     * @return integer
+     */
+    public function getCartonsRouge()
+    {
+        return $this->cartonsRouge;
+    }
+            
+            
+      public function addCartonsRouge($nb)
+    {
+        $this->cartonsRouge+=$nb;
+        return $this->cartonRouge;
+    }        
+    
+    
+      /**
+     * 
+     *
+     * @return UserMatch
+     */
+    public function setCartonsJaune($carton)
+    {
+        $this->cartonsJaune= $carton;
+
+        return $this;
+    }
+
+    /**
+     * Get buts
+     *
+     * @return integer
+     */
+    public function getCartonsJaune()
+    {
+        return $this->cartonsJaune;
+    }
+            
+            
+      public function addCartonsJaune($nb)
+    {
+        $this->cartonsJaune+=$nb;
+        return $this->cartonsJaune;
+    }        
+    
+    /*
+    *********** FIN STATISTIQUES
     */
-     private $buts; 
     
     public function addEvent(UserEvent $event)
   {
@@ -168,6 +344,28 @@ class User extends BaseUser
   public function getEvents()
   {
     return $this->events;
+  }
+  
+   
+    public function addMatch(UserMatch $match)
+  {
+    if (!$this->matchs->contains($match)) {  
+    $this->matchs[] = $match;
+    }
+    
+    return $this;
+  }
+
+  public function removeMatch(UserMatch $match)
+  {
+    $this->matchs->removeElement($match);
+
+    
+  }
+
+  public function getMatchs()
+  {
+    return $this->matchs;
   }
   
     
@@ -241,26 +439,7 @@ class User extends BaseUser
   }
     
    
-    public function addBut(But $but)
-  {
-    if (!$this->buts->contains($but)) {  
-    $this->buts[] = $but;
-    }
-    
-    return $this;
-  }
-
-  public function removeBut(But $but)
-  {
-    $this->buts->removeElement($but);
-
-    
-  }
-
-  public function getButs()
-  {
-    return $this->buts;
-  }
+  
   
   
    public function addTeam(Team $team)

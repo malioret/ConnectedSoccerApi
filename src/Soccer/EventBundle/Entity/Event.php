@@ -86,11 +86,7 @@ class Event
     private $nombreJoueurs;
    
    
-      
-       /**
-    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="event")
-    */
-     private $buts; 
+     
    
    
    
@@ -99,7 +95,7 @@ class Event
        
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
-          $this->buts = new ArrayCollection();
+        
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
     }
@@ -259,29 +255,6 @@ class Event
   }
   
       
-      public function addBut(But $but)
-      {
-         if (!$this->buts->contains($but)) {
-        $this->buts[] = $but;
-       // $ami->addEvent($this);
-        return $this;
-             
-         }
-      }
-
-  public function removeBut(But $but)
-  {
-    $this->buts->removeElement($but);
-   // $ami->removeAmi($this);
-
-    
-  }
-
-  public function getButs()
-  {
-    return $this->buts;
-  }
-    
     
     
 
