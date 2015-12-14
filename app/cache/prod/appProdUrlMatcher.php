@@ -444,39 +444,64 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                 }
                 not_get_friends:
 
-                if (0 === strpos($pathinfo, '/api/notifications')) {
-                    // get_notifications
-                    if (preg_match('#^/api/notifications(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                            $allow = array_merge($allow, array('GET', 'HEAD'));
-                            goto not_get_notifications;
+                // post_demande_ami
+                if (0 === strpos($pathinfo, '/api/demandes/amis') && preg_match('#^/api/demandes/amis(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_post_demande_ami;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_demande_ami')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\FriendsController::postDemandeAmiAction',  '_format' => 'json',));
+                }
+                not_post_demande_ami:
+
+                if (0 === strpos($pathinfo, '/api/notification')) {
+                    if (0 === strpos($pathinfo, '/api/notifications')) {
+                        // get_notifications
+                        if (preg_match('#^/api/notifications(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_get_notifications;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notifications')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_format' => 'json',));
+                        }
+                        not_get_notifications:
+
+                        // get_notification
+                        if (preg_match('#^/api/notifications/(?P<notification>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_get_notification;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationAction',  '_format' => 'json',));
+                        }
+                        not_get_notification:
+
+                        // post_notification_user
+                        if (0 === strpos($pathinfo, '/api/notifications/users') && preg_match('#^/api/notifications/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if ($this->context->getMethod() != 'POST') {
+                                $allow[] = 'POST';
+                                goto not_post_notification_user;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_notification_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::postNotificationUserAction',  '_format' => 'json',));
+                        }
+                        not_post_notification_user:
+
+                    }
+
+                    // put_notification
+                    if (preg_match('#^/api/notification(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'PUT') {
+                            $allow[] = 'PUT';
+                            goto not_put_notification;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notifications')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::putNotificationAction',  '_format' => 'json',));
                     }
-                    not_get_notifications:
-
-                    // get_notification
-                    if (preg_match('#^/api/notifications/(?P<notification>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                            $allow = array_merge($allow, array('GET', 'HEAD'));
-                            goto not_get_notification;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationAction',  '_format' => 'json',));
-                    }
-                    not_get_notification:
-
-                    // post_notification_user
-                    if (0 === strpos($pathinfo, '/api/notifications/users') && preg_match('#^/api/notifications/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if ($this->context->getMethod() != 'POST') {
-                            $allow[] = 'POST';
-                            goto not_post_notification_user;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_notification_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::postNotificationUserAction',  '_format' => 'json',));
-                    }
-                    not_post_notification_user:
+                    not_put_notification:
 
                 }
 

@@ -96,18 +96,19 @@ class AssignerEventController extends FOSRestController
             $user->addEvent($userEvent);
             
         $notification=new Notification();
-        $notification->setUser2($user);
+        $notification->setUserRecepteur($user);
         $message="Vous avez reçu une demande pour l'event : ".$event->getNom();   
            if($paramFetcher->get('id_user_owner')!=null)
            {
                $userOwner=$repository->findOneById($paramFetcher->get('id_user_owner'));
-               $notification->setUser1($userOwner);
+               $notification->setUserDemandeur($userOwner);
                $message=$message." par ".$userOwner->getNom();
            }
            
         $notification->setMessage($message);   
         $notification->setEvent($event);
         $notification->setDate(new \DateTime());
+        $notification->setStatus($status);
         
         
             $em->persist($userEvent);
@@ -307,18 +308,25 @@ class AssignerEventController extends FOSRestController
             $user->addEvent($userEvent);
             
         $notification=new Notification();
-        $notification->setUser2($user);
+        $notification->setUserRecepteur($user);
         $message="Vous avez reçu une demande pour l'event : ".$event->getNom();   
            if($paramFetcher->get('id_user_owner')!=null)
            {
                $userOwner=$repository->findOneById($paramFetcher->get('id_user_owner'));
-               $notification->setUser1($userOwner);
+               $notification->setUserDemandeur($userOwner);
                $message=$message." par ".$userOwner->getNom();
+           }
+           else // par l'administrateur
+           {
+                $admin=$event->getAdmin();
+                 $notification->setUserDemandeur($admin);
+                 $message=$message." par ".$admin->getNom();
            }
            
         $notification->setMessage($message);   
         $notification->setEvent($event);
         $notification->setDate(new \DateTime());
+        $notification->setStatus($status);
         
         $typeNotif=$repositoryTypeNotification->findOneById(2);
         $notification->setType($typeNotif);

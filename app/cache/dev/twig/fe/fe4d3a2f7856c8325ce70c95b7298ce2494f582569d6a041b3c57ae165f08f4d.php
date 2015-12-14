@@ -15,8 +15,8 @@ class __TwigTemplate_2e9efdfdee7dd24098a0734c8568cf976eb763ef3109ae7b8361f3b30a9
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_0c9de157c3811886e2daeb7fe25f079aecae855a625915aad9735f68620c0e05 = $this->env->getExtension("native_profiler");
-        $__internal_0c9de157c3811886e2daeb7fe25f079aecae855a625915aad9735f68620c0e05->enter($__internal_0c9de157c3811886e2daeb7fe25f079aecae855a625915aad9735f68620c0e05_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SoccerLandingBundle:Home:home.html.twig"));
+        $__internal_bb4af2a629845a02beba6b85038fe0a9633141ced5a83f4db427a8797909de45 = $this->env->getExtension("native_profiler");
+        $__internal_bb4af2a629845a02beba6b85038fe0a9633141ced5a83f4db427a8797909de45->enter($__internal_bb4af2a629845a02beba6b85038fe0a9633141ced5a83f4db427a8797909de45_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SoccerLandingBundle:Home:home.html.twig"));
 
         // line 1
         echo " <!-- Header -->
@@ -155,7 +155,7 @@ class __TwigTemplate_2e9efdfdee7dd24098a0734c8568cf976eb763ef3109ae7b8361f3b30a9
     </div>
     <!-- /.banner -->";
         
-        $__internal_0c9de157c3811886e2daeb7fe25f079aecae855a625915aad9735f68620c0e05->leave($__internal_0c9de157c3811886e2daeb7fe25f079aecae855a625915aad9735f68620c0e05_prof);
+        $__internal_bb4af2a629845a02beba6b85038fe0a9633141ced5a83f4db427a8797909de45->leave($__internal_bb4af2a629845a02beba6b85038fe0a9633141ced5a83f4db427a8797909de45_prof);
 
     }
 

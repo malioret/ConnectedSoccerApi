@@ -222,7 +222,7 @@ class User extends BaseUser
     public function addAmi(User $ami)
   {
     if (!$this->amis->contains($ami)) {  
-    $this->events[] = $event;
+    $this->amis[] = $ami;
     }
     
     return $this;

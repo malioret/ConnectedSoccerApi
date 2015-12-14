@@ -64,10 +64,10 @@ class Notification extends \SubwayBuddy\UserBundle\Entity\Notification implement
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'message', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'date', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'user1', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'user2', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'event', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'match', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'type');
+            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'message', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'date', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'userDemandeur', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'userRecepteur', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'event', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'match', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'type', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'status');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'message', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'date', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'user1', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'user2', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'event', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'match', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'type');
+        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'message', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'date', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'userDemandeur', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'userRecepteur', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'event', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'match', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'type', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\Notification' . "\0" . 'status');
     }
 
     /**
@@ -176,6 +176,28 @@ class Notification extends \SubwayBuddy\UserBundle\Entity\Notification implement
     /**
      * {@inheritDoc}
      */
+    public function setStatus(\Soccer\EventBundle\Entity\Status $status)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setStatus', array($status));
+
+        return parent::setStatus($status);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getStatus()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getStatus', array());
+
+        return parent::getStatus();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -230,50 +252,6 @@ class Notification extends \SubwayBuddy\UserBundle\Entity\Notification implement
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDate', array());
 
         return parent::getDate();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUser1(\SubwayBuddy\UserBundle\Entity\User $user1 = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser1', array($user1));
-
-        return parent::setUser1($user1);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUser1()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser1', array());
-
-        return parent::getUser1();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setUser2(\SubwayBuddy\UserBundle\Entity\User $user2 = NULL)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser2', array($user2));
-
-        return parent::setUser2($user2);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getUser2()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser2', array());
-
-        return parent::getUser2();
     }
 
     /**
@@ -340,6 +318,50 @@ class Notification extends \SubwayBuddy\UserBundle\Entity\Notification implement
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', array());
 
         return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUserDemandeur(\SubwayBuddy\UserBundle\Entity\User $userDemandeur = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUserDemandeur', array($userDemandeur));
+
+        return parent::setUserDemandeur($userDemandeur);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUserDemandeur()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUserDemandeur', array());
+
+        return parent::getUserDemandeur();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUserRecepteur(\SubwayBuddy\UserBundle\Entity\User $userRecepteur = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUserRecepteur', array($userRecepteur));
+
+        return parent::setUserRecepteur($userRecepteur);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUserRecepteur()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUserRecepteur', array());
+
+        return parent::getUserRecepteur();
     }
 
 }

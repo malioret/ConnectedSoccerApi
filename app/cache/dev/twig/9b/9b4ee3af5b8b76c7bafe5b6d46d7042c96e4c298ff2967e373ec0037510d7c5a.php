@@ -15,8 +15,8 @@ class __TwigTemplate_741bc18e59f7138d4703d36d092b85ccbbf74271ba0277e7346e1688c31
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_0c9929ad8d7593b9a50c7c8b69c41d5ce46e3197e0cdd16c8457f49b917362b9 = $this->env->getExtension("native_profiler");
-        $__internal_0c9929ad8d7593b9a50c7c8b69c41d5ce46e3197e0cdd16c8457f49b917362b9->enter($__internal_0c9929ad8d7593b9a50c7c8b69c41d5ce46e3197e0cdd16c8457f49b917362b9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SubwayBuddyUserBundle:Default:index.html.twig"));
+        $__internal_0f3e8498d5dacfaaa0b26c46493b60173afed272ea14395b0c125ed0b14be9b8 = $this->env->getExtension("native_profiler");
+        $__internal_0f3e8498d5dacfaaa0b26c46493b60173afed272ea14395b0c125ed0b14be9b8->enter($__internal_0f3e8498d5dacfaaa0b26c46493b60173afed272ea14395b0c125ed0b14be9b8_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SubwayBuddyUserBundle:Default:index.html.twig"));
 
         // line 1
         echo "<html>
@@ -26,7 +26,7 @@ class __TwigTemplate_741bc18e59f7138d4703d36d092b85ccbbf74271ba0277e7346e1688c31
     
 </html>";
         
-        $__internal_0c9929ad8d7593b9a50c7c8b69c41d5ce46e3197e0cdd16c8457f49b917362b9->leave($__internal_0c9929ad8d7593b9a50c7c8b69c41d5ce46e3197e0cdd16c8457f49b917362b9_prof);
+        $__internal_0f3e8498d5dacfaaa0b26c46493b60173afed272ea14395b0c125ed0b14be9b8->leave($__internal_0f3e8498d5dacfaaa0b26c46493b60173afed272ea14395b0c125ed0b14be9b8_prof);
 
     }
 

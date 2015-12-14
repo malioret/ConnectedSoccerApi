@@ -13,6 +13,19 @@ class NotificationRepository extends \Doctrine\ORM\EntityRepository
     
     
     
+     public function findNotificationByDemandeurRecepteur($demandeur,$recepteur,$type)
+    {
+      return $this
+        ->createQueryBuilder('u')
+         ->where("u.userDemandeur= :demandeur  and u.userRecepteur=:recepteur and u.type=:type")
+           ->setParameter(':demandeur',$demandeur)
+           ->setParameter(':recepteur',$recepteur)
+            ->setParameter(':type',$type)
+         ->orderBy('u.id', 'ASC')
+        ->getQuery()
+        ->getResult()
+      ;
+    }
     
     
     /*

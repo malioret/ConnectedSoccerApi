@@ -578,6 +578,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     }
                     not_post_notification_user:
 
+                    // post_notification
+                    if (preg_match('#^/api/notifications(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_notification;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::postNotificationAction',  '_format' => 'json',));
+                    }
+                    not_post_notification:
+
                 }
 
                 // website_test
@@ -739,6 +750,17 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     not_post_team:
 
                 }
+
+                // post_generate_team
+                if (0 === strpos($pathinfo, '/api/generates/teams') && preg_match('#^/api/generates/teams(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_post_generate_team;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_generate_team')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\TeamController::postGenerateTeamAction',  '_format' => 'json',));
+                }
+                not_post_generate_team:
 
             }
 

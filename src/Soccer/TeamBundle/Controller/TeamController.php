@@ -150,10 +150,10 @@ class TeamController extends FOSRestController
           $teams=$repositoryTeam->findTeamsByEvent($event->getId());
           foreach($teams as $team)
           {
-              $em->remove($team);
+              $em->remove($team); // on supprime les équipes
               $em->flush();
           }
-          $event->setIsGenerated(0);
+          $event->setIsGenerated(0); //on remet à 0 le champ isGenerated
           $em->persist($event);
           $em->flush();
       }
