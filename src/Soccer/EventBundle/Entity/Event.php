@@ -55,6 +55,26 @@ class Event
      *
      */
     private $date;
+    
+    
+    
+    /**
+     * @var dateCreation
+     *
+     * @ORM\Column(name="dateCreation", type="date")
+     *
+     */
+    private $dateCreation;
+    
+    
+    
+    /**
+     * @var isGenerated
+     *
+     * @ORM\Column(name="isGenerated", type="integer")
+     *
+     */
+    private $isGenerated;
    
    
    /**
@@ -80,6 +100,8 @@ class Event
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
           $this->buts = new ArrayCollection();
+          $this->isGenerated=0;
+          $this->dateCreation=new \DateTime();
     }
    
 
@@ -181,7 +203,10 @@ class Event
     */
      private $teams; 
      
-   
+    /**
+    * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+    */
+     private $admin; 
     
   
     
@@ -282,5 +307,77 @@ class Event
     public function getNombreJoueurs()
     {
         return $this->nombreJoueurs;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Event
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+    /**
+     * Set isGenerated
+     *
+     * @param integer $isGenerated
+     *
+     * @return Event
+     */
+    public function setIsGenerated($isGenerated)
+    {
+        $this->isGenerated = $isGenerated;
+
+        return $this;
+    }
+
+    /**
+     * Get isGenerated
+     *
+     * @return integer
+     */
+    public function getIsGenerated()
+    {
+        return $this->isGenerated;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\User $admin
+     *
+     * @return Event
+     */
+    public function setAdmin(\SubwayBuddy\UserBundle\Entity\User $admin = null)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\User
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
     }
 }

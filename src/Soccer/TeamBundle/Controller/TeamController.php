@@ -9,6 +9,8 @@ use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\TeamBundle\Entity\Team;
+use Soccer\EventBundle\Entity\Event;
+use Soccer\EventBundle\Entity\UserEvent;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -44,7 +46,7 @@ class TeamController extends FOSRestController
      * @param Team $team
      * @return array
      * @View()
-     * @ParamConverter("event", class="SoccerTeamBundle:Team")
+     * @ParamConverter("team", class="SoccerTeamBundle:Team")
      */
     public function getTeamAction(Team $team)
     {
@@ -98,6 +100,183 @@ class TeamController extends FOSRestController
         
     }
     
+     /** 
+     * @param ParamFetcher $Param Paramfetcher
+     *
+     * @RequestParam(name="id", description="event en param")
+     * @RequestParam(name="regenerate", nullable=true, description="option")
+     *
+     * @return View
+     */
+    public function postGenerateTeamAction(ParamFetcher $Param)
+    {
+       
+        
+        $em = $this->getDoctrine()->getManager();
+         $view = Vieww::create();
+
+        //on recupère l'id de l"event
+        
+        $id=$Param->get('id');
+        
+        //declaration des repository qui permettent de récupérer les données dans la base
+        $repositoryEvent = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:Event')
+        ;  
+        
+         $repositoryUserEvent = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:UserEvent')
+        ;  
+        
+         $repositoryTeam= $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:Team')
+        ;  
+        
+        //on récupère l'event associé à l'id donnée en paramètre
+        $event=$repositoryEvent->findOneById($id);
+       
+      
+      
+      //option de régénération : 
+      $regenerated=$Param->get("regenerate");
+      if($regenerated==1)
+      {
+          $teams=$repositoryTeam->findTeamsByEvent($event->getId());
+          foreach($teams as $team)
+          {
+              $em->remove($team);
+              $em->flush();
+          }
+          $event->setIsGenerated(0);
+          $em->persist($event);
+          $em->flush();
+      }
+      
+      
+      
+      
+      
+       $teams=array();// les équipes générés.
+       //les équipes ont déjà été générés
+       if($event->getIsGenerated()==1)
+       {
+           $teams=$repositoryTeam->findTeamsByEvent($event->getId());
+       }
+       else // on génère les équipes
+       {
+       //le nombre de joueurs max par équipe 
+       $nombreJoueurMax=$event->getNombreJoueurs();
+        
+        //la liste des joueurs qui participent 
+        /*
+        * Chaque instance est une entité UserEvent qui contient Le User, l'event et le status  (la jointure)
+        */
+        $joueurs=$repositoryUserEvent->findByUserParticipe($event);
+        
+        //on compte le nombre de joueurs qui participent
+        $nombreJoueur=count($joueurs);
+        
+        // on compte le nombre d'équipe possibles
+        $nombreEquipe=$nombreJoueur/$nombreJoueurMax;
+        
+        // si le nombre de joueurs ne respecte pas au moins le maximum du nombre de joueurs d'une équipe (exemple si on a 2 joueurs et le max est de 5)
+        // il est inutile de faire une "équipe de 1 vs 1"
+        if($nombreEquipe<1)
+        {
+             $view->setData("pas assez de joueurs :  joueurs requis : ".$nombreJoueurMax." joueurs totale : ".$nombreJoueur)->setStatusCode(400);
+               return $view;
+        }
+        else
+        {
+            //on prend la valeur supérieur (exemple si 12/5 = 2.4, on obtient 3 et donc 3 équipes)
+            $nombreEquipe=ceil($nombreEquipe);
+        }
+        
+        //on estime le nombre de joueurs Réels par équipe
+        $nombreJoueurRéel=intval($nombreJoueur/$nombreEquipe);
+        $nombreJoueurRestantsAAffecter = ($nombreJoueur%$nombreEquipe);
+        
+      /*
+        $em->persist($team);
+         $em->flush();
+      */
+       
+       //V1 : Repartir au hasard les joueurs peut importe leur niveau.
+       //V2 : tenir compte de l'attribut niveau => pb de sac à dos.
+       //V3 : Inclure les postes, pour ne pas avoir une équipe que d'attaquants => Compliqué, voir avec Claire Hanen ou François Delbot.
+       
+       
+       //Debut V1
+       //arrayJoueurs devra être un tableau à 2d : 1ère d numéroEquipe, 2eme d id joueur
+       $arrayJoueurs=array();
+       //cpt : c le cptème joueur du tableau $joueurs, on doit tous leur
+       $cpt = 0;
+       for($i=0;$i<$nombreEquipe;$i++)
+       {
+           for($j=0;$j<$nombreJoueurRéel;$j++)
+           {
+               $arrayJoueurs[$i][$j] = $joueurs[$cpt]->getUser();
+               $cpt++;
+           }
+       }
+       
+       //On Affecte les joueurs restants aux première equipes libres
+       $cpt=$nombreJoueurRéel;
+       $tmp = $nombreJoueurRéel;
+       for($i=0;$i<$nombreEquipe;$i++)
+       {
+           if($cpt!= ($nombreJoueurRéel+$nombreJoueurRestantsAAffecter+1) )
+           {
+              
+              $arrayJoueurs[$i][$nombreJoueurRéel] = $joueurs[$cpt]->getUser();
+              $cpt++;
+           }
+           else
+           {
+               $i=$nombreEquipe;
+           }
+       }
+       
+       
+       //insertion en BDD
+     
+       for($j=0;$j<$nombreEquipe;$j++)
+       {
+           $team = new Team();
+           $nomEvent=$event->getNom();
+           $team->setNom("team".$nomEvent.$j); 
+           
+           $tailleEquipe=count($arrayJoueurs[$j]); // la taille de l'équipe
+           
+           for($k=0;$k<$tailleEquipe;$k++)
+           {
+               $team->addJoueur($arrayJoueurs[$j][$k]);
+               
+           }
+          
+            $em->persist($team);
+             $em->persist($event);
+            $em->flush(); 
+            
+            $event->setIsGenerated(1); // les équipes ont été générés. 
+             $event->addTeam($team);
+             $em->persist($event);
+                $em->flush(); 
+            $teams[]=$team;
+           
+       }//fin for
+       }//fin else
+       
+            $view->setData($teams)->setStatusCode(200);
+            return $view;
+        
+    }
     
     
     

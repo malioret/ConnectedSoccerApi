@@ -93,7 +93,7 @@ class Team
     
     
      /**
-    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User", mappedBy="teams" )
+    * @ORM\ManyToMany(targetEntity="Soccer\EventBundle\Entity\Event", mappedBy="teams" )
     */
      private $events; 
     

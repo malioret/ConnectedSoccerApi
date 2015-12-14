@@ -58,6 +58,7 @@ class EventController extends FOSRestController
      * @RequestParam(name="lieu", nullable=false, strict=true, description="lieu.")
      * @RequestParam(name="date", nullable=false, strict=true, description="date.")
      * @RequestParam(name="nombreJoueurs", nullable=false, strict=true, description="date.")
+     * @RequestParam(name="id", nullable=true, description="id admin.")
      *
      * @return View
      */
@@ -72,6 +73,17 @@ class EventController extends FOSRestController
         $event->setLieu($paramFetcher->get('lieu'));
         $event->setDate($paramFetcher->get('date'));
         $event->setNombreJoueurs($paramFetcher->get('nombreJoueurs'));
+        
+        if($paramFetcher->get('id')==null)
+            $id=1;
+        else
+            $id=$paramFetcher->get('id');
+        
+        
+         $admin = $em->getRepository('SubwayBuddyUserBundle:User')->findOneById($id);
+        $event->setAdmin($admin);
+        
+        
         $view = Vieww::create();
       
         

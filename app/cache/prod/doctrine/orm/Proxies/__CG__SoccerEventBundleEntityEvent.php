@@ -64,10 +64,10 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
     }
 
     /**
@@ -373,6 +373,72 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNombreJoueurs', array());
 
         return parent::getNombreJoueurs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDateCreation($dateCreation)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDateCreation', array($dateCreation));
+
+        return parent::setDateCreation($dateCreation);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDateCreation()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDateCreation', array());
+
+        return parent::getDateCreation();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setIsGenerated($isGenerated)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsGenerated', array($isGenerated));
+
+        return parent::setIsGenerated($isGenerated);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIsGenerated()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsGenerated', array());
+
+        return parent::getIsGenerated();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAdmin(\SubwayBuddy\UserBundle\Entity\User $admin = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdmin', array($admin));
+
+        return parent::setAdmin($admin);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAdmin()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdmin', array());
+
+        return parent::getAdmin();
     }
 
 }
