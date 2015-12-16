@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Match
  *
- * @ORM\Table()
+ *  @ORM\Table(name="matchs")
  * @ORM\Entity(repositoryClass="Soccer\TeamBundle\Entity\MatchRepository")
  */
 class Match
@@ -55,6 +55,26 @@ class Match
      *
      */
     private $date;
+    
+    
+    
+/**
+     * @var isFinished
+     *
+     * @ORM\Column(name="isFinished", type="integer")
+     *
+     */
+    private $isFinished;
+   
+   
+/**
+     * @var isStarted
+     *
+     * @ORM\Column(name="isStarted", type="integer")
+     *
+     */
+    private $isStarted;
+   
    
        
      /**
@@ -74,7 +94,23 @@ class Match
    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\UserMatch", mappedBy="match")
    */
      private $joueurs;
+     
+     
+     /**
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Event", inversedBy="matchs")
+   */
+     private $event;
       
+
+      public function __construct()
+    {
+      
+         $this->scoreTeam2 =0;
+        $this->scoreTeam1 =0;
+        $this->isStarted=0;
+        $this->isFinished=0;
+          $this->joueurs = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -86,19 +122,82 @@ class Match
         return $this->id;
     }
 
-    /**
+  
+  
+   /**
      * Set score
      *
      * @param string $score
      *
      * @return Match
      */
-    public function setScore($score)
+    public function setIsFinished($finish)
     {
-        $this->score = $score;
+        $this->isFinished = $finish;
 
         return $this;
     }
+
+    /**
+     * Get score
+     *
+     * @return string
+     */
+    public function getIsFinished()
+    {
+        return $this->isFinished;
+    }
+    
+    /**
+     * Set event
+     *
+     * @param \Soccer\EventBundle\Entity\Event $event
+     *
+     * @return UserMatch
+     */
+    public function setEvent(\Soccer\EventBundle\Entity\Event $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Soccer\EventBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+    
+    
+  
+   /**
+     * Set score
+     *
+     * @param string $score
+     *
+     * @return Match
+     */
+    public function setIsStarted($start)
+    {
+        $this->isStarted = $start;
+
+        return $this;
+    }
+
+    /**
+     * Get score
+     *
+     * @return string
+     */
+    public function getIsStarted()
+    {
+        return $this->isStarted;
+    }
+
 
     /**
      * Get score
@@ -228,14 +327,7 @@ class Match
     {
         return $this->date;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-         $this->joueurs = new ArrayCollection();
-         
-    }
+    
 
      public function addJoueur(UserMatch $joueur)
   {

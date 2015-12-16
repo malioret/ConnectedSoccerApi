@@ -9,6 +9,8 @@ use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\TeamBundle\Entity\Team;
+use Soccer\TeamBundle\Entity\Match;
+use Soccer\TeamBundle\Entity\UserMatch;
 use Soccer\EventBundle\Entity\Event;
 use Soccer\EventBundle\Entity\UserEvent;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -177,7 +179,14 @@ class TeamController extends FOSRestController
         /*
         * Chaque instance est une entité UserEvent qui contient Le User, l'event et le status  (la jointure)
         */
-        $joueurs=$repositoryUserEvent->findByUserParticipe($event);
+        //$joueurs=$repositoryUserEvent->findByUserParticipe($event);
+        $joueurs=$repositoryUserEvent->findByUserParticipeAndAttente($event);
+        
+        if($joueurs==null)// si il n'existe pas de joueurs
+        {
+             $view->setData("aucun joueurs")->setStatusCode(400);
+               return $view;
+        }
         
         //on compte le nombre de joueurs qui participent
         $nombreJoueur=count($joueurs);
@@ -269,16 +278,71 @@ class TeamController extends FOSRestController
              $em->persist($event);
                 $em->flush(); 
             $teams[]=$team;
+            
+            
            
        }//fin for
+       
+            $this->GenerateMatch($event,$teams);
        }//fin else
+       
+   
        
             $view->setData($teams)->setStatusCode(200);
             return $view;
         
     }
     
-    
+     public function GenerateMatch($event,$teams)
+    {
+        //cela va généré n(n-1) match 
+        $n=count($teams); // on compte le nombre d'équipes
+        $nbMatch=$n*($n-1);
+         $em = $this->getDoctrine()->getManager();
+        for($i=0;$i<$n;$i++)
+        {
+            
+            for($j=0;$j<$n;$j++)
+            {
+                if($i!=$j)
+                {
+                    $match=new Match();
+                    $team1=$teams[$i];
+                    $team2=$teams[$j];
+                    $match->setTeam1($team1);
+                    $match->setTeam2($team2);
+                    $match->setDate(new \DateTime);
+                    $match->setEvent($event);
+                    $em->persist($match);
+                    $em->flush();
+                    
+                    //statistiques par match et par user : 
+                    $joueursTeam1=$team1->getJoueurs();
+                    foreach($joueursTeam1 as $joueur)
+                    {
+                        $userMatch = new UserMatch();
+                        $userMatch->setUser($joueur);
+                        $userMatch->setMatch($match);
+                        $userMatch->setEvent($event);
+                         $em->persist($userMatch);
+                        $em->flush();
+                    }
+                    
+                     $joueursTeam2=$team2->getJoueurs();
+                    foreach($joueursTeam2 as $joueur)
+                    {
+                        $userMatch = new UserMatch();
+                        $userMatch->setUser($joueur);
+                        $userMatch->setMatch($match);
+                         $userMatch->setEvent($event);
+                         $em->persist($userMatch);
+                        $em->flush();
+                    }
+                    
+                }
+            }
+        }
+    }
     
     
 }

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Soccer\EventBundle\Entity\Event;
+use Soccer\TeamBundle\Entity\UserMatch;
 use Soccer\EventBundle\Entity\UserEvent;
 use SubwayBuddy\UserBundle\Entity\Profil;
 use Soccer\TeamBundle\Entity\Poste;
@@ -59,6 +60,10 @@ class User extends BaseUser
            $this->matchs = new ArrayCollection();
          $this->teams = new ArrayCollection();
           $this->profils = new ArrayCollection();
+            $this->buts =0;
+        $this->passeDecisives =0;
+        $this->cartonsRouge=0;
+        $this->cartonsJaune=0;
     }
 
     /**

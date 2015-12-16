@@ -64,10 +64,10 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'profils', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'niveau', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'amis', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'postes', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'teams', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'buts', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
+            return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'profils', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'niveau', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'matchs', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'amis', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'postes', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'teams', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'buts', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'passeDecisives', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'cartonsRouge', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'cartonsJaune', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'profils', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'niveau', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'amis', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'postes', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'teams', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'buts', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
+        return array('__isInitialized__', 'id', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'nom', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'profils', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'niveau', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'events', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'matchs', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'amis', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'postes', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'teams', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'buts', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'passeDecisives', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'cartonsRouge', '' . "\0" . 'SubwayBuddy\\UserBundle\\Entity\\User' . "\0" . 'cartonsJaune', 'username', 'usernameCanonical', 'email', 'emailCanonical', 'enabled', 'salt', 'password', 'plainPassword', 'lastLogin', 'confirmationToken', 'passwordRequestedAt', 'groups', 'locked', 'expired', 'expiresAt', 'roles', 'credentialsExpired', 'credentialsExpireAt');
     }
 
     /**
@@ -235,6 +235,138 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
+    public function setButs($buts)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setButs', array($buts));
+
+        return parent::setButs($buts);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getButs()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getButs', array());
+
+        return parent::getButs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addBut($nb)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBut', array($nb));
+
+        return parent::addBut($nb);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPasseDecisives($passes)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPasseDecisives', array($passes));
+
+        return parent::setPasseDecisives($passes);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPasseDecisives()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPasseDecisives', array());
+
+        return parent::getPasseDecisives();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addPasseDecisives($nb)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPasseDecisives', array($nb));
+
+        return parent::addPasseDecisives($nb);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCartonsRouge($carton)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCartonsRouge', array($carton));
+
+        return parent::setCartonsRouge($carton);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCartonsRouge()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCartonsRouge', array());
+
+        return parent::getCartonsRouge();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addCartonsRouge($nb)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCartonsRouge', array($nb));
+
+        return parent::addCartonsRouge($nb);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCartonsJaune($carton)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCartonsJaune', array($carton));
+
+        return parent::setCartonsJaune($carton);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCartonsJaune()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCartonsJaune', array());
+
+        return parent::getCartonsJaune();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addCartonsJaune($nb)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCartonsJaune', array($nb));
+
+        return parent::addCartonsJaune($nb);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function addEvent(\Soccer\EventBundle\Entity\UserEvent $event)
     {
 
@@ -263,6 +395,39 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEvents', array());
 
         return parent::getEvents();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addMatch(\Soccer\TeamBundle\Entity\UserMatch $match)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addMatch', array($match));
+
+        return parent::addMatch($match);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeMatch(\Soccer\TeamBundle\Entity\UserMatch $match)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeMatch', array($match));
+
+        return parent::removeMatch($match);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMatchs()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMatchs', array());
+
+        return parent::getMatchs();
     }
 
     /**
@@ -362,39 +527,6 @@ class User extends \SubwayBuddy\UserBundle\Entity\User implements \Doctrine\ORM\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAmis', array());
 
         return parent::getAmis();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addBut(\Soccer\TeamBundle\Entity\But $but)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBut', array($but));
-
-        return parent::addBut($but);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeBut(\Soccer\TeamBundle\Entity\But $but)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBut', array($but));
-
-        return parent::removeBut($but);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getButs()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getButs', array());
-
-        return parent::getButs();
     }
 
     /**

@@ -9,7 +9,7 @@ use Soccer\EventBundle\Entity\UserEvent;
 use Soccer\EventBundle\Entity\Event;
 use Soccer\TeamBundle\Entity\Team;
 use Soccer\TeamBundle\Entity\But;
-
+use Soccer\TeamBundle\Entity\Match;
 
 /**
  * Event
@@ -86,7 +86,10 @@ class Event
     private $nombreJoueurs;
    
    
-     
+     /**
+   * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\Match", mappedBy="event")
+   */
+     private $matchs;
    
    
    
@@ -95,11 +98,35 @@ class Event
        
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
-        
+        $this->matchs = new ArrayCollection();
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
     }
    
+
+
+     public function addMatch(Match $match)
+  {
+    if (!$this->matchs->contains($match)) {  
+    $this->matchs[] = $match;
+    }
+    
+    return $this;
+  }
+
+  public function removeMatch(Match $match)
+  {
+    $this->matchs->removeElement($match);
+
+    
+  }
+
+  public function getMatchs()
+  {
+    return $this->matchs;
+  }
+
+
 
     /**
      * Get id

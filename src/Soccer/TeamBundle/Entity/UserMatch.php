@@ -39,6 +39,15 @@ class UserMatch
     }
     
     
+      public function __construct()
+    {
+      
+         $this->buts =0;
+        $this->passeDecisives =0;
+        $this->cartonsRouge=0;
+        $this->cartonsJaune=0;
+         
+    }
     
     
       /**
@@ -52,6 +61,14 @@ class UserMatch
    * @ORM\JoinColumn(nullable=false)
    */
   private $user;
+  
+  
+  /**
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Event")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $event;
+  
     
      /**
      * @var name
@@ -116,6 +133,31 @@ class UserMatch
         return $this->user;
     }
 
+
+
+  /**
+     * Set event
+     *
+     * @param \Soccer\EventBundle\Entity\Event $event
+     *
+     * @return UserMatch
+     */
+    public function setEvent(\Soccer\EventBundle\Entity\Event $event)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Soccer\EventBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
     
     
 

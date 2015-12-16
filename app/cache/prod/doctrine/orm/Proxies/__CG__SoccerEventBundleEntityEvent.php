@@ -64,10 +64,10 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'buts', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
     }
 
     /**
@@ -173,6 +173,39 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     }
 
     
+    /**
+     * {@inheritDoc}
+     */
+    public function addMatch(\Soccer\TeamBundle\Entity\Match $match)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addMatch', array($match));
+
+        return parent::addMatch($match);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeMatch(\Soccer\TeamBundle\Entity\Match $match)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeMatch', array($match));
+
+        return parent::removeMatch($match);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMatchs()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMatchs', array());
+
+        return parent::getMatchs();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -318,39 +351,6 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTeams', array());
 
         return parent::getTeams();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addBut(\Soccer\TeamBundle\Entity\But $but)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBut', array($but));
-
-        return parent::addBut($but);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeBut(\Soccer\TeamBundle\Entity\But $but)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBut', array($but));
-
-        return parent::removeBut($but);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getButs()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getButs', array());
-
-        return parent::getButs();
     }
 
     /**

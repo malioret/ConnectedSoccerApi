@@ -676,6 +676,45 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                 }
                 not_post_generate_team:
 
+                if (0 === strpos($pathinfo, '/api/match')) {
+                    // get_matchs
+                    if (0 === strpos($pathinfo, '/api/matchs') && preg_match('#^/api/matchs(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_matchs;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_matchs')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchsAction',  '_format' => 'json',));
+                    }
+                    not_get_matchs:
+
+                    if (0 === strpos($pathinfo, '/api/matches')) {
+                        // get_match
+                        if (preg_match('#^/api/matches/(?P<match>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_get_match;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchAction',  '_format' => 'json',));
+                        }
+                        not_get_match:
+
+                        // post_match
+                        if (preg_match('#^/api/matches(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if ($this->context->getMethod() != 'POST') {
+                                $allow[] = 'POST';
+                                goto not_post_match;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::postMatchAction',  '_format' => 'json',));
+                        }
+                        not_post_match:
+
+                    }
+
+                }
+
             }
 
         }

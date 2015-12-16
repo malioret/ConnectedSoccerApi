@@ -38,7 +38,7 @@ class UserEvent
         return $this->id;
     }
     
-    
+   
     
     
       /**

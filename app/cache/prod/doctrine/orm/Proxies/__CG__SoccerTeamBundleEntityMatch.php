@@ -64,10 +64,10 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'score', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'buts');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'score', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'buts');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs');
     }
 
     /**
@@ -191,12 +191,45 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
-    public function setScore($score)
+    public function setIsFinished($finish)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setScore', array($score));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsFinished', array($finish));
 
-        return parent::setScore($score);
+        return parent::setIsFinished($finish);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIsFinished()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsFinished', array());
+
+        return parent::getIsFinished();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setIsStarted($start)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsStarted', array($start));
+
+        return parent::setIsStarted($start);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIsStarted()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsStarted', array());
+
+        return parent::getIsStarted();
     }
 
     /**
@@ -323,34 +356,34 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
     /**
      * {@inheritDoc}
      */
-    public function addBut(\Soccer\TeamBundle\Entity\But $but)
+    public function addJoueur(\Soccer\TeamBundle\Entity\UserMatch $joueur)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addBut', array($but));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addJoueur', array($joueur));
 
-        return parent::addBut($but);
+        return parent::addJoueur($joueur);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeBut(\Soccer\TeamBundle\Entity\But $but)
+    public function removeJoueur(\Soccer\TeamBundle\Entity\UserMatch $joueur)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeBut', array($but));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeJoueur', array($joueur));
 
-        return parent::removeBut($but);
+        return parent::removeJoueur($joueur);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getButs()
+    public function getJoueurs()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getButs', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getJoueurs', array());
 
-        return parent::getButs();
+        return parent::getJoueurs();
     }
 
 }

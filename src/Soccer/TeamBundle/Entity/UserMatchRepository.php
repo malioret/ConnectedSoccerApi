@@ -11,6 +11,5 @@ namespace Soccer\TeamBundle\Entity;
 class UserMatchRepository extends \Doctrine\ORM\EntityRepository
 {
     
-    
 
 }

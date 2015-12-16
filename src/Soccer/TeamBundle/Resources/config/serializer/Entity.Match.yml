@@ -3,6 +3,20 @@ Soccer\TeamBundle\Entity\Match:
     properties:
         id:
             expose: true
+        scoreTeam1:
+            expose: true
+        scoreTeam2:
+            expose: true
+        isFinished:
+            expose: true
+        isStarted:
+            expose: true
+        team1:
+            expose: true
+        team2:
+            expose: true
+            
+            
         
        
        
