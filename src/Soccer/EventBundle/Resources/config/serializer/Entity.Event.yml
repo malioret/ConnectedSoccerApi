@@ -13,4 +13,6 @@ Soccer\EventBundle\Entity\Event:
             expose: true
         admin:
             expose: true
+        isGenerated:
+            expose: true
        

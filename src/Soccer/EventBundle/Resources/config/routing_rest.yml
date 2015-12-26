@@ -6,3 +6,10 @@ events:
 assigner_events:
     type:   rest
     resource:   "@SoccerEventBundle/Controller/AssignerEventController.php"
+    
+    
+terrains:
+    type:   rest
+    resource:   "@SoccerEventBundle/Controller/TerrainController.php"
+    
+    

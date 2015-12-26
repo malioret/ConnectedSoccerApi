@@ -92,6 +92,29 @@ class Event
      private $matchs;
    
    
+     
+     /**
+    * @ORM\OneToMany(targetEntity="Soccer\EventBundle\Entity\UserEvent", mappedBy="event")
+    */
+     private $amis; 
+    
+       /**
+    * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Team", inversedBy="events")
+    */
+     private $teams; 
+     
+    /**
+    * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+    */
+     private $admin; 
+     
+     
+    /**
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Terrain")
+   * @ORM\JoinColumn(nullable=true)
+   */
+  private $terrain;
+   
    
     public function __construct()
     {
@@ -216,20 +239,6 @@ class Event
     }
     
     
-     /**
-    * @ORM\OneToMany(targetEntity="Soccer\EventBundle\Entity\UserEvent", mappedBy="event")
-    */
-     private $amis; 
-    
-       /**
-    * @ORM\ManyToMany(targetEntity="Soccer\TeamBundle\Entity\Team", inversedBy="events")
-    */
-     private $teams; 
-     
-    /**
-    * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
-    */
-     private $admin; 
     
   
     
@@ -379,5 +388,29 @@ class Event
     public function getAdmin()
     {
         return $this->admin;
+    }
+
+    /**
+     * Set terrain
+     *
+     * @param \Soccer\EventBundle\Entity\Terrain $terrain
+     *
+     * @return Event
+     */
+    public function setTerrain(\Soccer\EventBundle\Entity\Terrain $terrain)
+    {
+        $this->terrain = $terrain;
+
+        return $this;
+    }
+
+    /**
+     * Get terrain
+     *
+     * @return \Soccer\EventBundle\Entity\Terrain
+     */
+    public function getTerrain()
+    {
+        return $this->terrain;
     }
 }

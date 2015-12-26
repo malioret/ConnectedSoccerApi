@@ -64,10 +64,10 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'event');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'event');
     }
 
     /**
@@ -208,6 +208,28 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsFinished', array());
 
         return parent::getIsFinished();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEvent(\Soccer\EventBundle\Entity\Event $event)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEvent', array($event));
+
+        return parent::setEvent($event);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEvent()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEvent', array());
+
+        return parent::getEvent();
     }
 
     /**

@@ -152,6 +152,14 @@ class UserController extends FOSRestController
             $password=$paramFetcher->get('password');
             
             
+            $userTest=$repositoryUser->findOneByUsername($username);
+            if($userTest==null)
+            {
+             $view->setData(false)->setStatusCode(400);
+            return $view;
+            }
+            
+            
              $securityContext = $this->container->get('security.context');
         if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             //return $securityContext->getToken()->getUser();

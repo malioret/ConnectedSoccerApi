@@ -56,6 +56,43 @@ class TeamController extends FOSRestController
     }
     
     
+     /** @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam( name="id", nullable=false, description="id event")
+     *
+     * @return View
+     */
+    public function postTeamEventAction(ParamFetcher $paramFetcher)
+    {
+         $em = $this->getDoctrine()->getManager();
+
+        $id=$paramFetcher->get('id');
+        $repositoryTeam = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:Team')
+        ;  
+        
+        $repositoryEvent = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerEventBundle:Event')
+        ;  
+        
+        $event=$repositoryEvent->findOneById($id);
+         $teams=$repositoryTeam->findTeamsByEvent($event->getId());
+        
+       
+        $view = Vieww::create();
+      
+        
+          
+            $view->setData($teams)->setStatusCode(200);
+            return $view;
+    
+    }
+    
+    //creer une team
     /** @param ParamFetcher $paramFetcher Paramfetcher
      *
      * @RequestParam(array=true, name="ids", default={}, description="List of ids")
@@ -140,6 +177,19 @@ class TeamController extends FOSRestController
             ->getRepository('SoccerTeamBundle:Team')
         ;  
         
+        $repositoryUserMatch= $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:UserMatch')
+        ;  
+        
+        
+        $repositoryMatch= $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:Match')
+        ;  
+        
         //on récupère l'event associé à l'id donnée en paramètre
         $event=$repositoryEvent->findOneById($id);
        
@@ -149,6 +199,21 @@ class TeamController extends FOSRestController
       $regenerated=$Param->get("regenerate");
       if($regenerated==1)
       {
+          //on recuperer les userMatch de cet event
+          $umatchs=$repositoryUserMatch->findByEvent($event);
+          foreach($umatchs as $umatch)
+          {
+              $em->remove($umatch); // on supprime les userMatch (stats de ces match)
+              $em->flush();
+          }
+          $matchs=$repositoryMatch->findByEvent($event);
+          foreach($matchs as $match)
+          {
+              $em->remove($match); // on supprime les Match 
+              $em->flush();
+          }
+          
+          
           $teams=$repositoryTeam->findTeamsByEvent($event->getId());
           foreach($teams as $team)
           {
@@ -180,7 +245,9 @@ class TeamController extends FOSRestController
         * Chaque instance est une entité UserEvent qui contient Le User, l'event et le status  (la jointure)
         */
         //$joueurs=$repositoryUserEvent->findByUserParticipe($event);
-        $joueurs=$repositoryUserEvent->findByUserParticipeAndAttente($event);
+        //$joueurs=$repositoryUserEvent->findByUserParticipeAndAttente($event);
+        
+        $joueurs=$repositoryUserEvent->findByUserParticipeAndAttenteNiveau($event); // on récupère la liste des joueurs triés par niveau décroissant
         
         if($joueurs==null)// si il n'existe pas de joueurs
         {
@@ -223,6 +290,7 @@ class TeamController extends FOSRestController
        
        //Debut V1
        //arrayJoueurs devra être un tableau à 2d : 1ère d numéroEquipe, 2eme d id joueur
+       /*
        $arrayJoueurs=array();
        //cpt : c le cptème joueur du tableau $joueurs, on doit tous leur
        $cpt = 0;
@@ -252,6 +320,60 @@ class TeamController extends FOSRestController
            }
        }
        
+       
+       
+       */
+        //$view->setData($nombreJoueurRéel)->setStatusCode(400);
+          //     return $view;
+       //V2 Tenir compte du sac à dos :
+       //Debut V1
+       //arrayJoueurs devra être un tableau à 2d : 1ère d numéroEquipe, 2eme d id joueur
+       $arrayJoueurs=array();
+       //cpt : c le cptème joueur du tableau $joueurs, on doit tous leur
+       $cpt = 0;
+       $kj=$nombreEquipe-1;
+       $f=0; // numero de joueur dans l'équipe 
+       $array=array();
+       for($i=0;$i<$nombreEquipe;$i++)
+       {
+           
+           for($j=0;$j<$nombreJoueurRéel;$j++)
+           {
+               $array[]=$kj;
+               $arrayJoueurs[$kj][$f] = $joueurs[$cpt]->getUser();
+               $cpt++;
+               $kj--;
+               if($kj==-1)
+               {
+                 $kj=$nombreEquipe-1;
+                 $f++;
+               }
+               
+           }
+       }
+       
+      
+       
+       
+       //On Affecte les joueurs restants aux première equipes libres
+       //$cpt=$nombreJoueurRéel;
+       $tmp = $nombreJoueurRéel;
+       for($i=0;$i<$nombreEquipe;$i++)
+       {
+           if($cpt!=$nombreJoueur ) //si on a pas inséré le nombre de joueurs totale
+           {
+              
+              $arrayJoueurs[$i][$f] = $joueurs[$cpt]->getUser();
+              $cpt++;
+           }
+           else
+           {
+               $i=$nombreEquipe;
+           }
+       }
+       
+       
+    
        
        //insertion en BDD
      

@@ -64,10 +64,10 @@ class UserMatch extends \Soccer\TeamBundle\Entity\UserMatch implements \Doctrine
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'match', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'user', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'buts', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'passeDecisives', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsRouge', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsJaune');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'match', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'user', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'event', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'buts', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'passeDecisives', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsRouge', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsJaune');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'match', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'user', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'buts', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'passeDecisives', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsRouge', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsJaune');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'match', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'user', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'event', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'buts', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'passeDecisives', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsRouge', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\UserMatch' . "\0" . 'cartonsJaune');
     }
 
     /**
@@ -208,6 +208,28 @@ class UserMatch extends \Soccer\TeamBundle\Entity\UserMatch implements \Doctrine
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
 
         return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEvent(\Soccer\EventBundle\Entity\Event $event)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEvent', array($event));
+
+        return parent::setEvent($event);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEvent()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEvent', array());
+
+        return parent::getEvent();
     }
 
     /**

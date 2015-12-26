@@ -10,7 +10,7 @@ use Soccer\TeamBundle\Entity\Match;
  * Event
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Soccer\EventBundle\Entity\UserMatchRepository")
+ * @ORM\Entity(repositoryClass="Soccer\TeamBundle\Entity\UserMatchRepository")
  */
 class UserMatch
 {

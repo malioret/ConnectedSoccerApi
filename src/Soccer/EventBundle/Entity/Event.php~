@@ -9,7 +9,7 @@ use Soccer\EventBundle\Entity\UserEvent;
 use Soccer\EventBundle\Entity\Event;
 use Soccer\TeamBundle\Entity\Team;
 use Soccer\TeamBundle\Entity\But;
-
+use Soccer\TeamBundle\Entity\Match;
 
 /**
  * Event
@@ -86,12 +86,18 @@ class Event
     private $nombreJoueurs;
    
    
-      
-       /**
-    * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\But", mappedBy="event")
-    */
-     private $buts; 
+     /**
+   * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\Match", mappedBy="event")
+   */
+     private $matchs;
    
+   
+     
+    /**
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Terrain")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $terrain;
    
    
     public function __construct()
@@ -99,11 +105,35 @@ class Event
        
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
-          $this->buts = new ArrayCollection();
+        $this->matchs = new ArrayCollection();
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
     }
    
+
+
+     public function addMatch(Match $match)
+  {
+    if (!$this->matchs->contains($match)) {  
+    $this->matchs[] = $match;
+    }
+    
+    return $this;
+  }
+
+  public function removeMatch(Match $match)
+  {
+    $this->matchs->removeElement($match);
+
+    
+  }
+
+  public function getMatchs()
+  {
+    return $this->matchs;
+  }
+
+
 
     /**
      * Get id
@@ -259,29 +289,6 @@ class Event
   }
   
       
-      public function addBut(But $but)
-      {
-         if (!$this->buts->contains($but)) {
-        $this->buts[] = $but;
-       // $ami->addEvent($this);
-        return $this;
-             
-         }
-      }
-
-  public function removeBut(But $but)
-  {
-    $this->buts->removeElement($but);
-   // $ami->removeAmi($this);
-
-    
-  }
-
-  public function getButs()
-  {
-    return $this->buts;
-  }
-    
     
     
 
@@ -355,5 +362,29 @@ class Event
     public function getIsGenerated()
     {
         return $this->isGenerated;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\User $admin
+     *
+     * @return Event
+     */
+    public function setAdmin(\SubwayBuddy\UserBundle\Entity\User $admin = null)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\User
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
     }
 }

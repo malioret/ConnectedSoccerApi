@@ -72,6 +72,28 @@ class UserEventRepository extends \Doctrine\ORM\EntityRepository
       ;
     }
     
+    
+    public function  findByUserParticipeAndAttenteNiveau($event)
+    {
+       $query= $this
+        ->createQueryBuilder('u')
+        ->join('u.user', 'user')
+            ->addSelect('user')
+         ->where("u.event= :event and u.status!=3 ")
+           ->setParameter(':event',$event)
+            ->orderBy('user.niveau', 'DESC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
+    
 }
 
 

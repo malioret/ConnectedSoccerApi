@@ -82,7 +82,7 @@ class MatchController extends FOSRestController
         ;  
         
         $event=$repositoryEvent->findOneById($id);
-        $matchs=$repositoryMatch->findByEvent();
+        $matchs=$repositoryMatch->findByEvent($event);
         
        
         $view = Vieww::create();

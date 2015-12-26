@@ -86,7 +86,7 @@ class NotificationController extends FOSRestController
         {
            
         
-        $notifications=$repository->findByUserRecepteur($paramFetcher->get('id_user'));
+        $notifications["notifications"]=$repository->findByUserRecepteur($paramFetcher->get('id_user'));
         
         
        
