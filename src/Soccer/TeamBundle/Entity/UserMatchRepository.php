@@ -10,6 +10,24 @@ namespace Soccer\TeamBundle\Entity;
  */
 class UserMatchRepository extends \Doctrine\ORM\EntityRepository
 {
-    
+       public function findByMatchAndUser($match, $user)
+    {
+      $query= $this
+        ->createQueryBuilder('u')
+         ->where("u.match=:match and u.user=:user ")
+           ->setParameter(':match',$match)
+           ->setParameter(':user',$user)
+         ->orderBy('u.id', 'ASC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
 
 }

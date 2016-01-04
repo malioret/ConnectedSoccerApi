@@ -15,4 +15,8 @@ Soccer\EventBundle\Entity\Event:
             expose: true
         isGenerated:
             expose: true
+        terrain:
+            expose: true
+        type:
+            expose: true
        

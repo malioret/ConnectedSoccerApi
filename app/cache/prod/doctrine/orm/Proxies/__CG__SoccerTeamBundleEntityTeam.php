@@ -276,4 +276,15 @@ class Team extends \Soccer\TeamBundle\Entity\Team implements \Doctrine\ORM\Proxy
         return parent::getEvents();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function containJoueur(\SubwayBuddy\UserBundle\Entity\User $user)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'containJoueur', array($user));
+
+        return parent::containJoueur($user);
+    }
+
 }

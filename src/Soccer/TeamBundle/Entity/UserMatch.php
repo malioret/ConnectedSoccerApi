@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use SubwayBuddy\UserBundle\Entity\User;
 use Soccer\TeamBundle\Entity\Match;
+use Soccer\TeamBundle\Entity\Team;
 /**
  * Event
  *
@@ -51,13 +52,13 @@ class UserMatch
     
     
       /**
-   * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Match", inversedBy="joueurs")
+   * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Match", inversedBy="joueurs", cascade={"remove", "persist"})
    * @ORM\JoinColumn(nullable=false)
    */
   private $match;
 
   /**
-   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="matchs")
+   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="matchs", cascade={"persist"})
    * @ORM\JoinColumn(nullable=false)
    */
   private $user;
@@ -221,7 +222,29 @@ class UserMatch
         $this->buts+=$nb;
         $this->user->addBut($nb); // on incrémente le nombre de but total de l'utilisateur
         
+        
+        //recup des teams
+        $team1=$this->match->getTeam1();
+        $team2=$this->match->getTeam2();
+        
+        
+        
+       
+        //si le joueur appartient à la team1 on augmente le score de la team 1
+        if($team1->containJoueur($this->user))
+        {
+            $score=$this->match->getScoreTeam1()+$nb;
+            $this->match->setScoreTeam1($score);
+        }
+        else if($team2->containJoueur($this->user))
+        {
+             $score=$this->match->getScoreTeam2()+$nb;
+            $this->match->setScoreTeam2($score);
+        }
+       
+        
         return $this->buts;
+        
     }
 
     

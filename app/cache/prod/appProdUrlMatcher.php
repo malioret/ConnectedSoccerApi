@@ -69,6 +69,21 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
         not_subwaybuddy_user_notification_getnotifications:
 
+        // subwaybuddy_user_profil_getprofils
+        if (rtrim($pathinfo, '/') === '') {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_subwaybuddy_user_profil_getprofils;
+            }
+
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'subwaybuddy_user_profil_getprofils');
+            }
+
+            return array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\ProfilController::getProfilsAction',  '_route' => 'subwaybuddy_user_profil_getprofils',);
+        }
+        not_subwaybuddy_user_profil_getprofils:
+
         // subwaybuddy_user_recherche_getusers
         if (rtrim($pathinfo, '/') === '') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
@@ -738,32 +753,54 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     }
                     not_get_matchs:
 
-                    if (0 === strpos($pathinfo, '/api/matches')) {
-                        // get_match
-                        if (preg_match('#^/api/matches/(?P<match>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                                $allow = array_merge($allow, array('GET', 'HEAD'));
-                                goto not_get_match;
-                            }
-
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchAction',  '_format' => 'json',));
+                    // get_match
+                    if (0 === strpos($pathinfo, '/api/matches') && preg_match('#^/api/matches/(?P<match>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_match;
                         }
-                        not_get_match:
 
-                        // post_match
-                        if (preg_match('#^/api/matches(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                            if ($this->context->getMethod() != 'POST') {
-                                $allow[] = 'POST';
-                                goto not_post_match;
-                            }
-
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::postMatchAction',  '_format' => 'json',));
-                        }
-                        not_post_match:
-
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchAction',  '_format' => 'json',));
                     }
+                    not_get_match:
 
                 }
+
+                if (0 === strpos($pathinfo, '/api/add/but')) {
+                    // put_add_but
+                    if (preg_match('#^/api/add/but(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'PUT') {
+                            $allow[] = 'PUT';
+                            goto not_put_add_but;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_add_but')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::putAddButAction',  '_format' => 'json',));
+                    }
+                    not_put_add_but:
+
+                    // put_add_buts
+                    if (0 === strpos($pathinfo, '/api/add/buts') && preg_match('#^/api/add/buts(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'PUT') {
+                            $allow[] = 'PUT';
+                            goto not_put_add_buts;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_add_buts')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::putAddButsAction',  '_format' => 'json',));
+                    }
+                    not_put_add_buts:
+
+                }
+
+                // post_match
+                if (0 === strpos($pathinfo, '/api/matches') && preg_match('#^/api/matches(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_post_match;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::postMatchAction',  '_format' => 'json',));
+                }
+                not_post_match:
 
             }
 

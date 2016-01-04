@@ -78,20 +78,20 @@ class Match
    
        
      /**
-    * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Team")
+    * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Team", cascade={"persist"})
     */
      private $team1; 
      
      
        
      /**
-    * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Team")
+    * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Team", cascade={"persist"})
     */
      private $team2; 
     
        
     /**
-   * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\UserMatch", mappedBy="match")
+   * @ORM\OneToMany(targetEntity="Soccer\TeamBundle\Entity\UserMatch", mappedBy="match", cascade={"remove", "persist"})
    */
      private $joueurs;
      
@@ -218,7 +218,7 @@ class Match
      */
     public function setScoreTeam1($scoreTeam1)
     {
-
+       $this->scoreTeam1 = $scoreTeam1;
         return $this;
     }
 
@@ -229,6 +229,7 @@ class Match
      */
     public function getScoreTeam1()
     {
+        
         return $this->scoreTeam1;
     }
 

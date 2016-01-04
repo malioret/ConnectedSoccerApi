@@ -151,8 +151,15 @@ class Team
     return $this->events;
   }
   
-  
-  
+  //savoir si la team contient le joueur
+  public function containJoueur(User $user)
+  {
+       if (!$this->joueurs->contains($user)) {
+           return false;
+       }
+       else
+         return true;
+  }
      
     
 }

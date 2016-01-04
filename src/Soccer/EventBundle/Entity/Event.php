@@ -114,6 +114,12 @@ class Event
    * @ORM\JoinColumn(nullable=true)
    */
   private $terrain;
+  
+   /**
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\TypeEvent")
+   * @ORM\JoinColumn(nullable=true)
+   */
+  private $type;
    
    
     public function __construct()
@@ -412,5 +418,29 @@ class Event
     public function getTerrain()
     {
         return $this->terrain;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \Soccer\EventBundle\Entity\TypeEvent $type
+     *
+     * @return Event
+     */
+    public function setType(\Soccer\EventBundle\Entity\TypeEvent $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Soccer\EventBundle\Entity\TypeEvent
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

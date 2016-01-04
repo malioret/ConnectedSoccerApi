@@ -57,6 +57,173 @@ class MatchController extends FOSRestController
     
     
     
+    
+   /**
+    *  
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam(name="id", nullable=false, strict=true, description="id.")
+     * @RequestParam(array=true, name="ids", nullable=false, strict=true, description="list ids.")
+     * 
+     *
+     * @return View
+     */
+    public function putAddButAction(ParamFetcher $paramFetcher)
+    {
+        
+             $repositoryMatch = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:Match')
+            ;  
+             $repositoryUserMatch = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:UserMatch');
+            ;  
+            
+            $match=$repositoryMatch->findOneById($paramFetcher->get('id'));
+        
+          $em = $this->getDoctrine()->getManager();
+
+         $view = Vieww::create();
+        //on recupere le tableau
+      $ids=$paramFetcher->get('ids');
+        
+        foreach($ids as $id)
+        {
+            
+            
+             $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SubwayBuddyUserBundle:User')
+            ; 
+            $reponse=true;
+            //on recupère l'utilisateur
+             $user=$repository->findOneById($id);
+        
+        //On recupere le userMatch
+        $userMatch=$repositoryUserMatch->findByMatchAndUser($match, $user);
+        
+      //  var_dump($userEventTest);
+        
+        if(  $userMatch!=null)
+        {
+            
+            //on ajoute un but à l'user et 
+            $userMatch->addBut(1);
+            $matchUser=$userMatch->getMatch();
+
+            $em->persist($userMatch);
+            $em->persist($matchUser);
+           $em->persist($match);
+           $em->persist($user);
+            $em->flush();
+           
+            }//fin if
+          else
+          {
+                $reponse=false;
+                
+          }
+        }//fin for
+        
+       
+            $view->setData($match)->setStatusCode(200);
+            return $view;
+    
+    }
+    
+    
+    /**
+    *  
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam(name="id", nullable=false, strict=true, description="id.")
+     * @RequestParam(array=true, name="ids", nullable=false, strict=true, description="list ids.")
+     * 
+     *
+     * @return View
+     */
+    public function putAddButsAction(ParamFetcher $paramFetcher)
+    {
+        
+             $repositoryMatch = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:Match')
+            ;  
+             $repositoryUserMatch = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SoccerTeamBundle:UserMatch');
+            ;  
+            
+            $match=$repositoryMatch->findOneById($paramFetcher->get('id'));
+        
+          $em = $this->getDoctrine()->getManager();
+
+         $view = Vieww::create();
+        //on recupere le tableau
+      $ids=$paramFetcher->get('ids');
+        
+        foreach($ids as $Iuser=>$but)
+        {
+            
+            
+            
+            
+            
+            
+            
+             $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SubwayBuddyUserBundle:User')
+            ; 
+            $reponse=true;
+            //on recupère l'utilisateur
+             $user=$repository->findOneById($Iuser);
+            //  $view->setData($user)->setStatusCode(200);
+            //return $view;
+        
+        //On recupere le userMatch
+        $userMatch=$repositoryUserMatch->findByMatchAndUser($match, $user);
+        
+      //  var_dump($userEventTest);
+        
+        if(  $userMatch!=null)
+        {
+            
+         
+            $userMatch->addBut($but);
+            $matchUser=$userMatch->getMatch();
+
+            $em->persist($userMatch);
+            $em->persist($matchUser);
+           $em->persist($match);
+           $em->persist($user);
+            $em->flush();
+           
+            }//fin if
+          else
+          {
+                $reponse=false;
+                
+          }
+          
+          
+        }//fin for
+        
+       
+            $view->setData($match)->setStatusCode(200);
+            return $view;
+    
+    }
+    
+    
+    
      /** @param ParamFetcher $paramFetcher Paramfetcher
      *
      * @RequestParam( name="id", nullable=false, description="id event")
@@ -94,6 +261,6 @@ class MatchController extends FOSRestController
         
     }
    
-    
+   
     
 }

@@ -64,10 +64,10 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'terrain', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'type');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'lieu', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'terrain', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'type');
     }
 
     /**
@@ -439,6 +439,50 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdmin', array());
 
         return parent::getAdmin();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setTerrain(\Soccer\EventBundle\Entity\Terrain $terrain)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTerrain', array($terrain));
+
+        return parent::setTerrain($terrain);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTerrain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTerrain', array());
+
+        return parent::getTerrain();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setType(\Soccer\EventBundle\Entity\TypeEvent $type)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setType', array($type));
+
+        return parent::setType($type);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getType()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', array());
+
+        return parent::getType();
     }
 
 }

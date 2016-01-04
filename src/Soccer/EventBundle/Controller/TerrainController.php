@@ -79,8 +79,8 @@ class TerrainController extends FOSRestController
         $longitude=$paramFetcher->get('longitude');
         $latitude=$paramFetcher->get('latitude');
         
-        
-        $terrain=$repositoryTerrain->findByLongitudeLatitude($longitude,$latitude);
+        //verification si le trrain existe deja.
+        $terrain=$repositoryTerrain->findByLongitudeLatitudeOrAdresse($longitude,$latitude,$adresse);
         if($terrain==null)
         {
              $terrain=new Terrain();

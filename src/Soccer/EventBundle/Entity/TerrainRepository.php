@@ -31,6 +31,27 @@ class TerrainRepository extends \Doctrine\ORM\EntityRepository
       ;
     }
     
+      public function  findByLongitudeLatitudeOrAdresse($longitude,$latitude,$adresse)
+    {
+       $query= $this
+        ->createQueryBuilder('t')
+         ->where("(t.longitude=:longitude and t.latitude=:latitude) or t.adresse=:adresse ")
+           ->setParameter(':longitude',$longitude)
+           ->setParameter(':latitude',$latitude)
+            ->setParameter(':adresse',$adresse)
+         ->orderBy('t.id', 'ASC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getSingleResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
+    
     
 }
 
