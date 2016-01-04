@@ -53,6 +53,28 @@ class UserEventRepository extends \Doctrine\ORM\EntityRepository
     }
     
     
+     public function findByEventParticipe($user)
+    {
+      $query= $this
+        ->createQueryBuilder('u')
+         ->where("u.user= :user and u.status=1 ")
+           ->setParameter(':user',$user)
+         ->orderBy('u.id', 'ASC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
+    
+    
+    
+    
     public function  findByUserParticipeAndAttente($event)
     {
        $query= $this
@@ -94,6 +116,28 @@ class UserEventRepository extends \Doctrine\ORM\EntityRepository
       ;
     }
     
+    
+    
+      public function  findByUserParticipeAndNiveau($event)
+    {
+       $query= $this
+        ->createQueryBuilder('u')
+        ->join('u.user', 'user')
+            ->addSelect('user')
+         ->where("u.event= :event and u.status=1 ")
+           ->setParameter(':event',$event)
+            ->orderBy('user.niveau', 'DESC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
 }
 
 

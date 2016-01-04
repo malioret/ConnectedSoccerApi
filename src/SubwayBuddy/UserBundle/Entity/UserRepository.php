@@ -24,7 +24,21 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
       ;
     }
     
-    
+    public function findAllUserNoFriendByUsername($id,$username)
+    {
+      return $this
+        ->createQueryBuilder('u')
+         
+         ->where("u.username LIKE :username and u.id!=:id")
+           ->setParameter(':username','%'.$username.'%')
+               ->setParameter(':id',$id)
+         ->orderBy('u.username', 'ASC')
+        ->getQuery()
+        ->getResult()
+      ;
+      
+      
+    }
     /*
     public function findAllOperationUser($user,$page, $nbPerPage)
   {

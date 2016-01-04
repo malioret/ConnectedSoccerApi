@@ -75,6 +75,15 @@ class Event
      *
      */
     private $isGenerated;
+    
+    
+     /**
+     * @var isValidate
+     *
+     * @ORM\Column(name="isValidate", type="integer")
+     *
+     */
+    private $isValidate;
    
    
    /**
@@ -130,6 +139,7 @@ class Event
         $this->matchs = new ArrayCollection();
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
+          $this->isValidate=0;
     }
    
 
@@ -372,6 +382,22 @@ class Event
         return $this->isGenerated;
     }
 
+ public function setIsValidate($isValidate)
+    {
+        $this->isValidate = $isValidate;
+
+        return $this;
+    }
+
+    /**
+     * Get isGenerated
+     *
+     * @return integer
+     */
+    public function getIsValidate()
+    {
+        return $this->isValidate;
+    }
     /**
      * Set admin
      *

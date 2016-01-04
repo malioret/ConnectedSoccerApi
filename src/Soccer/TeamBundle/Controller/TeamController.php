@@ -247,8 +247,10 @@ class TeamController extends FOSRestController
         //$joueurs=$repositoryUserEvent->findByUserParticipe($event);
         //$joueurs=$repositoryUserEvent->findByUserParticipeAndAttente($event);
         
-        $joueurs=$repositoryUserEvent->findByUserParticipeAndAttenteNiveau($event); // on récupère la liste des joueurs triés par niveau décroissant
         
+        //MODIFICATION
+        $joueurs=$repositoryUserEvent->findByUserParticipeAndAttenteNiveau($event); // on récupère la liste des joueurs triés par niveau décroissant
+        //$joueurs=$repositoryUserEvent->findByUserParticipeAndNiveau($event);
         if($joueurs==null)// si il n'existe pas de joueurs
         {
              $view->setData("aucun joueurs")->setStatusCode(400);

@@ -56,6 +56,23 @@ class MatchController extends FOSRestController
     }
     
     
+     /**
+     * @param Event $event
+     * @return array
+     * @View()
+     * @ParamConverter("event", class="SoccerEventBundle:Event")
+     */
+    public function getMatcheventAction(Event $event)
+    {
+          $em = $this->getDoctrine()->getManager();
+        
+        // Va récupérer toutes les lignes de la table 'team'.
+        $matchs = $em->getRepository('SoccerTeamBundle:Match')->findByEvent($event);
+
+        
+        return array('matchs' => $matchs);
+    }
+    
     
     
    /**
@@ -224,9 +241,10 @@ class MatchController extends FOSRestController
     
     
     
-     /** @param ParamFetcher $paramFetcher Paramfetcher
+     /**
+     * @param ParamFetcher $Param Paramfetcher
      *
-     * @RequestParam( name="id", nullable=false, description="id event")
+     * @RequestParam(name="id", nullable=false, description="id event")
      *
      * @return View
      */
