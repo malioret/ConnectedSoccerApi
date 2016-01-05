@@ -57,6 +57,38 @@ class MatchController extends FOSRestController
     
     
      /**
+     * @param Match $match
+     * @return array
+     * @View()
+     * @ParamConverter("match", class="SoccerTeamBundle:Match")
+     */
+    public function getMatchuserAction(Match $match)
+    {
+        
+        $users=array();
+        $team1=$match->getTeam1();
+        $team2=$match->getTeam2();
+        $joueurs1=$team1->getJoueurs();
+        $joueurs2=$team2->getJoueurs();
+        
+        $users=$joueurs1;
+        foreach($joueurs2 as $joueur)
+        {
+            $users[]=$joueur;
+        }
+        
+       // $users=array_merge($joueurs1,$joueurs2); //on merge les deux tableaux de joueur
+        
+        return array('users' => $users);
+    }
+    
+    
+    
+    
+    
+    
+    
+     /**
      * @param Event $event
      * @return array
      * @View()
@@ -151,6 +183,12 @@ class MatchController extends FOSRestController
             return $view;
     
     }
+    
+    
+    
+    
+    
+    
     
     
     /**

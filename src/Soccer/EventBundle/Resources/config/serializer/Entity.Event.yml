@@ -5,8 +5,6 @@ Soccer\EventBundle\Entity\Event:
             expose: true
         nom:
             expose: true
-        lieu:
-            expose: true
         date:
             expose: true
         nombreJoueurs:

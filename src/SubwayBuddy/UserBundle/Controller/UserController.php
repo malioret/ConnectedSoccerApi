@@ -7,6 +7,8 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 use SubwayBuddy\UserBundle\Entity\User;
+use SubwayBuddy\UserBundle\Entity\Profil;
+use Soccer\TeamBundle\Entity\Poste;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -117,7 +119,103 @@ class UserController extends FOSRestController
     }
     
     
-    
+      /**
+     * Modifié a User from the submitted data.<br/>
+     *
+     * 
+     *
+     * @param ParamFetcher $paramFetcher Paramfetcher
+     *
+     * @RequestParam(name="id", nullable=false, strict=true, description="id.")
+     * @RequestParam(name="email", nullable=false, strict=true, description="Email.")
+     * @RequestParam(name="nom", nullable=false, strict=true, description="Nom.")
+     * @RequestParam(name="password", nullable=false, strict=true, description="Plain Password.")
+     * @RequestParam(name="niveau",nullable=true, description="Niveau.")
+     * @RequestParam(array=true, name="profils", nullable=true, strict=true, description="list ids.")
+     * @RequestParam(array=true, name="postes", nullable=true, strict=true, description="list ids.")
+     * 
+     * @return View
+     */
+    public function putUserAction(ParamFetcher $paramFetcher)
+    {
+        $userManager = $this->container->get('fos_user.user_manager');
+        
+        
+             $repositoryUser = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SubwayBuddyUserBundle:User')
+            ;  
+       
+       //recuperation des params 
+        $email=$paramFetcher->get('email');
+        $id=$paramFetcher->get('id');
+        $password=$paramFetcher->get("password");
+        $nom=$paramFetcher->get("nom");
+        $niveau=$paramFetcher->get("niveau");
+        
+        //recup des param optionnel
+         $profils=$paramFetcher->get("profils");
+         $postes=$paramFetcher->get("postes");
+        
+        $user=$repositoryUser->findOneById($id);
+        
+
+        $user->setEmail($email);
+        $user->setPlainPassword($password);
+        $user->setNom($nom);
+        $user->setNiveau($niveau);
+        
+        
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        // Va récupérer toutes les lignes de la table 'event'.
+        
+        
+        //gestion des profils :
+        //si on a  précisé les profils
+        if($profils!=null)
+        {
+            foreach($profils as $p)
+            {
+                $profil = $em->getRepository('SubwayBuddyUserBundle:Profil')->findOneById($p);
+        
+                if($profil!=null)
+                    $user->addProfil($profil);
+            }
+        }
+        else{
+             $profil = $em->getRepository('SubwayBuddyUserBundle:Profil')->findOneById(1);
+        
+               $user->addProfil($profil);
+        }
+        
+       
+        if($postes!=null)
+        {
+            foreach($postes as $p)
+            {
+                $poste = $em->getRepository('SoccerTeamBundle:Poste')->findOneById($p);
+        
+                if($poste!=null)
+                    $user->addPoste($poste);
+            }
+        }
+        
+        
+        $view = Vieww::create();
+        $errors = $this->get('validator')->validate($user, array('Registration'));
+        if (count($errors) == 0) {
+            $userManager->updateUser($user);
+            $view->setData($user)->setStatusCode(200);
+            return $view;
+        } else {
+            $view->setData($errors)->setStatusCode(400);
+           // $view = $this->getErrorsView($errors);
+            return $view;
+        }
+    }
     
     /**
      *
@@ -193,6 +291,12 @@ class UserController extends FOSRestController
        
        
     }
+    
+    
+    
+    
+    
+    
     
     
 }

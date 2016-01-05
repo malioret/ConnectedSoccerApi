@@ -390,28 +390,42 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             }
 
             if (0 === strpos($pathinfo, '/api')) {
-                if (0 === strpos($pathinfo, '/api/users')) {
-                    // get_user
-                    if (preg_match('#^/api/users/(?P<user>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                            $allow = array_merge($allow, array('GET', 'HEAD'));
-                            goto not_get_user;
+                if (0 === strpos($pathinfo, '/api/user')) {
+                    if (0 === strpos($pathinfo, '/api/users')) {
+                        // get_user
+                        if (preg_match('#^/api/users/(?P<user>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_get_user;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::getUserAction',  '_format' => 'json',));
+                        }
+                        not_get_user:
+
+                        // post_user
+                        if (preg_match('#^/api/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if ($this->context->getMethod() != 'POST') {
+                                $allow[] = 'POST';
+                                goto not_post_user;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::postUserAction',  '_format' => 'json',));
+                        }
+                        not_post_user:
+
+                    }
+
+                    // put_user
+                    if (preg_match('#^/api/user(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'PUT') {
+                            $allow[] = 'PUT';
+                            goto not_put_user;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::getUserAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::putUserAction',  '_format' => 'json',));
                     }
-                    not_get_user:
-
-                    // post_user
-                    if (preg_match('#^/api/users(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                        if ($this->context->getMethod() != 'POST') {
-                            $allow[] = 'POST';
-                            goto not_post_user;
-                        }
-
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::postUserAction',  '_format' => 'json',));
-                    }
-                    not_post_user:
+                    not_put_user:
 
                 }
 
@@ -817,30 +831,38 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     }
                     not_get_matchs:
 
-                    if (0 === strpos($pathinfo, '/api/matche')) {
-                        // get_match
-                        if (0 === strpos($pathinfo, '/api/matches') && preg_match('#^/api/matches/(?P<match>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                                $allow = array_merge($allow, array('GET', 'HEAD'));
-                                goto not_get_match;
-                            }
-
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchAction',  '_format' => 'json',));
+                    // get_match
+                    if (0 === strpos($pathinfo, '/api/matches') && preg_match('#^/api/matches/(?P<match>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_match;
                         }
-                        not_get_match:
 
-                        // get_matchevent
-                        if (0 === strpos($pathinfo, '/api/matchevents') && preg_match('#^/api/matchevents/(?P<event>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                                $allow = array_merge($allow, array('GET', 'HEAD'));
-                                goto not_get_matchevent;
-                            }
-
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_matchevent')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatcheventAction',  '_format' => 'json',));
-                        }
-                        not_get_matchevent:
-
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchAction',  '_format' => 'json',));
                     }
+                    not_get_match:
+
+                    // get_matchuser
+                    if (0 === strpos($pathinfo, '/api/matchusers') && preg_match('#^/api/matchusers/(?P<match>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_matchuser;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_matchuser')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatchuserAction',  '_format' => 'json',));
+                    }
+                    not_get_matchuser:
+
+                    // get_matchevent
+                    if (0 === strpos($pathinfo, '/api/matchevents') && preg_match('#^/api/matchevents/(?P<event>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_matchevent;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_matchevent')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::getMatcheventAction',  '_format' => 'json',));
+                    }
+                    not_get_matchevent:
 
                 }
 

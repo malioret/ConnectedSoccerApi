@@ -38,13 +38,6 @@ class Event
     private $nom;
    
    
-   /**
-     * @var string
-     *
-     * @ORM\Column(name="lieu", type="string",  length=255)
-     *
-     */
-    private $lieu;
    
    
    
@@ -188,15 +181,6 @@ class Event
     }
     
     
-      /**
-     * Get lieu
-     *
-     * @return string
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
     
     
       /**
@@ -226,19 +210,7 @@ class Event
         return $this;
     }
 
-    /**
-     * Set lieu
-     *
-     * @param string $lieu
-     *
-     * @return Event
-     */
-    public function setLieu($lieu)
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
+   
 
     /**
      * Set date

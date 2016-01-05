@@ -156,7 +156,7 @@ class EventController extends FOSRestController
 
         
         $event->setNom($paramFetcher->get('nom'));
-        $event->setLieu($paramFetcher->get('lieu'));
+       // $event->setLieu($paramFetcher->get('lieu'));
         $event->setDate($paramFetcher->get('date'));
         $event->setNombreJoueurs($paramFetcher->get('nombreJoueurs'));
         
@@ -290,7 +290,7 @@ class EventController extends FOSRestController
 
         
         $event->setNom($paramFetcher->get('nom'));
-        $event->setLieu($paramFetcher->get('lieu'));
+       // $event->setLieu($paramFetcher->get('lieu'));
         $event->setDate($paramFetcher->get('date'));
         $event->setNombreJoueurs($paramFetcher->get('nombreJoueurs'));
         
@@ -435,7 +435,7 @@ class EventController extends FOSRestController
      *
      * @RequestParam(array=true, name="ids", nullable=false, strict=true, description="List of ids")
      * @RequestParam(name="nom", nullable=false, strict=true, description="nom.")
-     * @RequestParam(name="lieu", nullable=false, strict=true, description="lieu.")
+     * @RequestParam(name="lieu", nullable=true, strict=true, description="lieu.")
      * @RequestParam(name="date", nullable=false, strict=true, description="date.")
      * @RequestParam(name="nombreJoueurs", nullable=false, strict=true, description="nombres joueurs.")
      * @RequestParam(name="adresse", nullable=true, description="id admin.")
@@ -453,7 +453,7 @@ class EventController extends FOSRestController
 
         
         $event->setNom($paramFetcher->get('nom'));
-        $event->setLieu($paramFetcher->get('lieu'));
+     //   $event->setLieu($paramFetcher->get('lieu'));
         $event->setDate($paramFetcher->get('date'));
         $event->setNombreJoueurs($paramFetcher->get('nombreJoueurs'));
        
