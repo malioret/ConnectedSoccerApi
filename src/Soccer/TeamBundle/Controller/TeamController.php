@@ -253,7 +253,7 @@ class TeamController extends FOSRestController
         //$joueurs=$repositoryUserEvent->findByUserParticipeAndNiveau($event);
         if($joueurs==null)// si il n'existe pas de joueurs
         {
-             $view->setData("aucun joueurs")->setStatusCode(400);
+             $view->setData("false")->setStatusCode(400);
                return $view;
         }
         
@@ -267,7 +267,8 @@ class TeamController extends FOSRestController
         // il est inutile de faire une "équipe de 1 vs 1"
         if($nombreEquipe<1)
         {
-             $view->setData("pas assez de joueurs :  joueurs requis : ".$nombreJoueurMax." joueurs totale : ".$nombreJoueur)->setStatusCode(400);
+            // $view->setData("pas assez de joueurs :  joueurs requis : ".$nombreJoueurMax." joueurs totale : ".$nombreJoueur)->setStatusCode(400);
+              $view->setData("false")->setStatusCode(400);
                return $view;
         }
         else

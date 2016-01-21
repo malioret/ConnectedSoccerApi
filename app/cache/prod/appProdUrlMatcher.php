@@ -28,9 +28,14 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $request = $this->request;
 
         if (0 === strpos($pathinfo, '/hello')) {
+            // soccer_util_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_util_homepage')), array (  '_controller' => 'Soccer\\UtilBundle\\Controller\\DefaultController::indexAction',));
+            }
+
             // soccer_team_homepage
             if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_team_homepage')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\DefaultController::indexAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_team_homepage')), array (  '_controller' => 'SoccerTeamBundle:Default:index',));
             }
 
             // soccer_landing_test
@@ -51,7 +56,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
         // soccer_event_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_event_homepage')), array (  '_controller' => 'Soccer\\EventBundle\\Controller\\DefaultController::indexAction',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_event_homepage')), array (  '_controller' => 'SoccerEventBundle:Default:index',));
         }
 
         // subwaybuddy_user_notification_getnotifications
@@ -559,9 +564,34 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
                 }
 
+                if (0 === strpos($pathinfo, '/api/profils')) {
+                    // get_profils
+                    if (preg_match('#^/api/profils(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_profils;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_profils')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\ProfilController::getProfilsAction',  '_format' => 'json',));
+                    }
+                    not_get_profils:
+
+                    // get_profil
+                    if (preg_match('#^/api/profils/(?P<profil>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_profil;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_profil')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\ProfilController::getProfilAction',  '_format' => 'json',));
+                    }
+                    not_get_profil:
+
+                }
+
                 // website_test
                 if (0 === strpos($pathinfo, '/api/test') && preg_match('#^/api/test(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'website_test')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\DefaultController::indexAction',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'website_test')), array (  '_controller' => 'SubwayBuddyUserBundle:Default:index',  '_format' => 'json',));
                 }
 
                 if (0 === strpos($pathinfo, '/api/event')) {

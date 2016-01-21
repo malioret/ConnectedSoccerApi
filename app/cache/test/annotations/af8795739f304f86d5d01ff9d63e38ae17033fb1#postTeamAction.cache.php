@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:50:"FOS\\RestBundle\\Controller\\Annotations\\RequestParam":10:{s:6:"strict";b:1;s:4:"name";s:3:"ids";s:3:"key";N;s:12:"requirements";N;s:7:"default";a:0:{}s:11:"description";s:11:"List of ids";s:5:"array";b:1;s:8:"nullable";b:0;s:10:"allowBlank";b:1;s:13:"incompatibles";a:0:{}}}');

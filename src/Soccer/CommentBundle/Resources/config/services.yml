@@ -1,0 +1,4 @@
+services:
+#    soccer_comment.example:
+#        class: Soccer\CommentBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

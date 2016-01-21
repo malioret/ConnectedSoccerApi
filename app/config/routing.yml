@@ -1,3 +1,11 @@
+soccer_comment:
+    resource: "@SoccerCommentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+soccer_util:
+    resource: "@SoccerUtilBundle/Resources/config/routing.yml"
+    prefix:   /
+
 soccer_team:
     resource: "@SoccerTeamBundle/Resources/config/routing.yml"
     prefix:   /

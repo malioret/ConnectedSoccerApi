@@ -13,7 +13,11 @@ friends:
 notifications:
     type:   rest
     resource:   "@SubwayBuddyUserBundle/Controller/NotificationController.php"
-    
+
+profils:
+    type:   rest
+    resource:   "@SubwayBuddyUserBundle/Controller/ProfilController.php"
+        
 
     
 website_test:

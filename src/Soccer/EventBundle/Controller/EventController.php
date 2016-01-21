@@ -282,7 +282,7 @@ class EventController extends FOSRestController
         //si l'event n'existe pas ou l'admin ne correspond pas au user
         if($event==null || $event->getAdmin()!=$user)
         {
-            $view->setData(false)->setStatusCode(200); // on retourne false
+            $view->setData(false)->setStatusCode(400); // on retourne false
             return $view;
         }
         
