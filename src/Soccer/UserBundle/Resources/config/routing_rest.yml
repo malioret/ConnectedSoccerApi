@@ -1,0 +1,25 @@
+users:
+    type:   rest
+    resource:   "@SoccerUserBundle/Controller/UserController.php"
+    
+recherche:
+    type:   rest
+    resource:   "@SoccerUserBundle/Controller/RechercheController.php"
+    
+friends:
+    type:   rest
+    resource:   "@SoccerUserBundle/Controller/FriendsController.php"
+    
+notifications:
+    type:   rest
+    resource:   "@SoccerUserBundle/Controller/NotificationController.php"
+
+profils:
+    type:   rest
+    resource:   "@SoccerUserBundle/Controller/ProfilController.php"
+        
+
+    
+website_test:
+    path:     /test
+    defaults: { _controller: SoccerUserBundle:Default:index }

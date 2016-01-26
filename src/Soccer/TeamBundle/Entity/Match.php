@@ -102,9 +102,18 @@ class Match
      private $event;
       
 
+    /**
+   * @ORM\OneToMany(targetEntity="Soccer\CommentBundle\Entity\Commentaire", mappedBy="event")
+   */
+     private $commentaires;
+
+
+
+
+
       public function __construct()
     {
-      
+        $this->commentaires = new ArrayCollection();
          $this->scoreTeam2 =0;
         $this->scoreTeam1 =0;
         $this->isStarted=0;
@@ -352,4 +361,38 @@ class Match
   }
   
    
+
+    /**
+     * Add commentaire
+     *
+     * @param \Soccer\CommentBundle\Entity\Commentaire $commentaire
+     *
+     * @return Match
+     */
+    public function addCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Soccer\CommentBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
 }

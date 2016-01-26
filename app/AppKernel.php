@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new SubwayBuddy\UserBundle\SubwayBuddyUserBundle(),
+            new Soccer\UserBundle\SoccerUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new Soccer\TeamBundle\SoccerTeamBundle(),
             new Soccer\UtilBundle\SoccerUtilBundle(),
             new Soccer\CommentBundle\SoccerCommentBundle(),
+            new Soccer\EvolutionBundle\SoccerEvolutionBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

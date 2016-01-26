@@ -1,3 +1,7 @@
+soccer_evolution:
+    resource: "@SoccerEvolutionBundle/Resources/config/routing.yml"
+    prefix:   /
+
 soccer_comment:
     resource: "@SoccerCommentBundle/Resources/config/routing.yml"
     prefix:   /
@@ -20,7 +24,7 @@ soccer_event:
 
 
 subway_buddy_user:
-    resource: "@SubwayBuddyUserBundle/Controller/"
+    resource: "@SoccerUserBundle/Controller/"
     type:     annotation
     prefix:   /
 

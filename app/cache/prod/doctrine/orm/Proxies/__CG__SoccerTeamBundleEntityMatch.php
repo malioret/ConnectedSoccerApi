@@ -64,10 +64,10 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'event');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'event', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'commentaires');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'event');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'scoreTeam2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'date', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isFinished', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'isStarted', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team1', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'team2', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'joueurs', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'event', '' . "\0" . 'Soccer\\TeamBundle\\Entity\\Match' . "\0" . 'commentaires');
     }
 
     /**
@@ -406,6 +406,39 @@ class Match extends \Soccer\TeamBundle\Entity\Match implements \Doctrine\ORM\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getJoueurs', array());
 
         return parent::getJoueurs();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCommentaire', array($commentaire));
+
+        return parent::addCommentaire($commentaire);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCommentaire', array($commentaire));
+
+        return parent::removeCommentaire($commentaire);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCommentaires()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCommentaires', array());
+
+        return parent::getCommentaires();
     }
 
 }

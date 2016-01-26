@@ -191,7 +191,7 @@ class UserMatch extends \Soccer\TeamBundle\Entity\UserMatch implements \Doctrine
     /**
      * {@inheritDoc}
      */
-    public function setUser(\SubwayBuddy\UserBundle\Entity\User $user)
+    public function setUser(\Soccer\UserBundle\Entity\User $user)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));

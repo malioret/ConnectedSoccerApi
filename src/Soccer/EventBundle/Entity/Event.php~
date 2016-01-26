@@ -38,13 +38,6 @@ class Event
     private $nom;
    
    
-   /**
-     * @var string
-     *
-     * @ORM\Column(name="lieu", type="string",  length=255)
-     *
-     */
-    private $lieu;
    
    
    
@@ -75,6 +68,15 @@ class Event
      *
      */
     private $isGenerated;
+    
+    
+     /**
+     * @var isValidate
+     *
+     * @ORM\Column(name="isValidate", type="integer")
+     *
+     */
+    private $isValidate;
    
    
    /**
@@ -117,9 +119,19 @@ class Event
   
    /**
    * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\TypeEvent")
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\JoinColumn(nullable=true)
    */
   private $type;
+   
+   
+   
+   /**
+   * @ORM\OneToMany(targetEntity="Soccer\CommentBundle\Entity\Commentaire", mappedBy="event")
+   */
+     private $commentaires;
+   
+   
+   
    
    
     public function __construct()
@@ -128,8 +140,10 @@ class Event
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
         $this->matchs = new ArrayCollection();
+         $this->commentaires = new ArrayCollection();
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
+          $this->isValidate=0;
     }
    
 
@@ -178,15 +192,6 @@ class Event
     }
     
     
-      /**
-     * Get lieu
-     *
-     * @return string
-     */
-    public function getLieu()
-    {
-        return $this->lieu;
-    }
     
     
       /**
@@ -216,19 +221,7 @@ class Event
         return $this;
     }
 
-    /**
-     * Set lieu
-     *
-     * @param string $lieu
-     *
-     * @return Event
-     */
-    public function setLieu($lieu)
-    {
-        $this->lieu = $lieu;
-
-        return $this;
-    }
+   
 
     /**
      * Set date
@@ -372,6 +365,22 @@ class Event
         return $this->isGenerated;
     }
 
+ public function setIsValidate($isValidate)
+    {
+        $this->isValidate = $isValidate;
+
+        return $this;
+    }
+
+    /**
+     * Get isGenerated
+     *
+     * @return integer
+     */
+    public function getIsValidate()
+    {
+        return $this->isValidate;
+    }
     /**
      * Set admin
      *
@@ -418,5 +427,63 @@ class Event
     public function getTerrain()
     {
         return $this->terrain;
+    }
+
+    /**
+     * Set type
+     *
+     * @param \Soccer\EventBundle\Entity\TypeEvent $type
+     *
+     * @return Event
+     */
+    public function setType(\Soccer\EventBundle\Entity\TypeEvent $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return \Soccer\EventBundle\Entity\TypeEvent
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Soccer\CommentBundle\Entity\Commentaire $commentaire
+     *
+     * @return Event
+     */
+    public function addCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Soccer\CommentBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

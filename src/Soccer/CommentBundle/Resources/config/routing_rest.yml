@@ -1,0 +1,5 @@
+comments:
+    type:   rest
+    resource:   "@SoccerCommentBundle/Controller/CommentaireController.php"
+    
+

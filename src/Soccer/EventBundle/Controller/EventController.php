@@ -75,7 +75,7 @@ class EventController extends FOSRestController
         $repositoryUser= $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
         ;  
         
         $id=$paramFetcher->get("id");
@@ -110,7 +110,7 @@ class EventController extends FOSRestController
         $repositoryUser= $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
         ;  
         
         $id=$paramFetcher->get("id");
@@ -166,7 +166,7 @@ class EventController extends FOSRestController
             $id=$paramFetcher->get('id');
         
         
-         $admin = $em->getRepository('SubwayBuddyUserBundle:User')->findOneById($id);
+         $admin = $em->getRepository('SoccerUserBundle:User')->findOneById($id);
         $event->setAdmin($admin);
         
         
@@ -268,7 +268,7 @@ class EventController extends FOSRestController
         $repositoryUser = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
         ;
         
         $id_event=$paramFetcher->get("id_event");

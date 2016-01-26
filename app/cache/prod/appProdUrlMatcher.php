@@ -28,6 +28,16 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $request = $this->request;
 
         if (0 === strpos($pathinfo, '/hello')) {
+            // soccer_evolution_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_evolution_homepage')), array (  '_controller' => 'Soccer\\EvolutionBundle\\Controller\\DefaultController::indexAction',));
+            }
+
+            // soccer_comment_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_comment_homepage')), array (  '_controller' => 'Soccer\\CommentBundle\\Controller\\DefaultController::indexAction',));
+            }
+
             // soccer_util_homepage
             if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_util_homepage')), array (  '_controller' => 'Soccer\\UtilBundle\\Controller\\DefaultController::indexAction',));
@@ -59,65 +69,65 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_event_homepage')), array (  '_controller' => 'SoccerEventBundle:Default:index',));
         }
 
-        // subwaybuddy_user_notification_getnotifications
+        // soccer_user_notification_getnotifications
         if (rtrim($pathinfo, '/') === '') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_subwaybuddy_user_notification_getnotifications;
+                goto not_soccer_user_notification_getnotifications;
             }
 
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'subwaybuddy_user_notification_getnotifications');
+                return $this->redirect($pathinfo.'/', 'soccer_user_notification_getnotifications');
             }
 
-            return array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_route' => 'subwaybuddy_user_notification_getnotifications',);
+            return array (  '_controller' => 'Soccer\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_route' => 'soccer_user_notification_getnotifications',);
         }
-        not_subwaybuddy_user_notification_getnotifications:
+        not_soccer_user_notification_getnotifications:
 
-        // subwaybuddy_user_profil_getprofils
+        // soccer_user_profil_getprofils
         if (rtrim($pathinfo, '/') === '') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_subwaybuddy_user_profil_getprofils;
+                goto not_soccer_user_profil_getprofils;
             }
 
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'subwaybuddy_user_profil_getprofils');
+                return $this->redirect($pathinfo.'/', 'soccer_user_profil_getprofils');
             }
 
-            return array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\ProfilController::getProfilsAction',  '_route' => 'subwaybuddy_user_profil_getprofils',);
+            return array (  '_controller' => 'Soccer\\UserBundle\\Controller\\ProfilController::getProfilsAction',  '_route' => 'soccer_user_profil_getprofils',);
         }
-        not_subwaybuddy_user_profil_getprofils:
+        not_soccer_user_profil_getprofils:
 
-        // subwaybuddy_user_recherche_getusers
+        // soccer_user_recherche_getusers
         if (rtrim($pathinfo, '/') === '') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_subwaybuddy_user_recherche_getusers;
+                goto not_soccer_user_recherche_getusers;
             }
 
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'subwaybuddy_user_recherche_getusers');
+                return $this->redirect($pathinfo.'/', 'soccer_user_recherche_getusers');
             }
 
-            return array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\RechercheController::getUsersAction',  '_route' => 'subwaybuddy_user_recherche_getusers',);
+            return array (  '_controller' => 'Soccer\\UserBundle\\Controller\\RechercheController::getUsersAction',  '_route' => 'soccer_user_recherche_getusers',);
         }
-        not_subwaybuddy_user_recherche_getusers:
+        not_soccer_user_recherche_getusers:
 
-        // subwaybuddy_user_user_getusers
+        // soccer_user_user_getusers
         if (rtrim($pathinfo, '/') === '') {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_subwaybuddy_user_user_getusers;
+                goto not_soccer_user_user_getusers;
             }
 
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'subwaybuddy_user_user_getusers');
+                return $this->redirect($pathinfo.'/', 'soccer_user_user_getusers');
             }
 
-            return array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::getUsersAction',  '_route' => 'subwaybuddy_user_user_getusers',);
+            return array (  '_controller' => 'Soccer\\UserBundle\\Controller\\UserController::getUsersAction',  '_route' => 'soccer_user_user_getusers',);
         }
-        not_subwaybuddy_user_user_getusers:
+        not_soccer_user_user_getusers:
 
         if (0 === strpos($pathinfo, '/log')) {
             if (0 === strpos($pathinfo, '/login')) {
@@ -354,40 +364,40 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     return array (  '_controller' => 'sonata.admin.controller.admin:retrieveAutocompleteItemsAction',  '_route' => 'sonata_admin_retrieve_autocomplete_items',);
                 }
 
-                if (0 === strpos($pathinfo, '/admin/subwaybuddy/user/user')) {
-                    // admin_subwaybuddy_user_user_list
-                    if ($pathinfo === '/admin/subwaybuddy/user/user/list') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_list',  '_route' => 'admin_subwaybuddy_user_user_list',);
+                if (0 === strpos($pathinfo, '/admin/soccer/user/user')) {
+                    // admin_soccer_user_user_list
+                    if ($pathinfo === '/admin/soccer/user/user/list') {
+                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::listAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_list',  '_route' => 'admin_soccer_user_user_list',);
                     }
 
-                    // admin_subwaybuddy_user_user_create
-                    if ($pathinfo === '/admin/subwaybuddy/user/user/create') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_create',  '_route' => 'admin_subwaybuddy_user_user_create',);
+                    // admin_soccer_user_user_create
+                    if ($pathinfo === '/admin/soccer/user/user/create') {
+                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::createAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_create',  '_route' => 'admin_soccer_user_user_create',);
                     }
 
-                    // admin_subwaybuddy_user_user_batch
-                    if ($pathinfo === '/admin/subwaybuddy/user/user/batch') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_batch',  '_route' => 'admin_subwaybuddy_user_user_batch',);
+                    // admin_soccer_user_user_batch
+                    if ($pathinfo === '/admin/soccer/user/user/batch') {
+                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::batchAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_batch',  '_route' => 'admin_soccer_user_user_batch',);
                     }
 
-                    // admin_subwaybuddy_user_user_edit
-                    if (preg_match('#^/admin/subwaybuddy/user/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_subwaybuddy_user_user_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_edit',));
+                    // admin_soccer_user_user_edit
+                    if (preg_match('#^/admin/soccer/user/user/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_soccer_user_user_edit')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::editAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_edit',));
                     }
 
-                    // admin_subwaybuddy_user_user_delete
-                    if (preg_match('#^/admin/subwaybuddy/user/user/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_subwaybuddy_user_user_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_delete',));
+                    // admin_soccer_user_user_delete
+                    if (preg_match('#^/admin/soccer/user/user/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_soccer_user_user_delete')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::deleteAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_delete',));
                     }
 
-                    // admin_subwaybuddy_user_user_show
-                    if (preg_match('#^/admin/subwaybuddy/user/user/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_subwaybuddy_user_user_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_show',));
+                    // admin_soccer_user_user_show
+                    if (preg_match('#^/admin/soccer/user/user/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_soccer_user_user_show')), array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::showAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_show',));
                     }
 
-                    // admin_subwaybuddy_user_user_export
-                    if ($pathinfo === '/admin/subwaybuddy/user/user/export') {
-                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_subwaybuddy_user_user_export',  '_route' => 'admin_subwaybuddy_user_user_export',);
+                    // admin_soccer_user_user_export
+                    if ($pathinfo === '/admin/soccer/user/user/export') {
+                        return array (  '_controller' => 'Sonata\\AdminBundle\\Controller\\CRUDController::exportAction',  '_sonata_admin' => 'admin.customer',  '_sonata_name' => 'admin_soccer_user_user_export',  '_route' => 'admin_soccer_user_user_export',);
                     }
 
                 }
@@ -404,7 +414,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                                 goto not_get_user;
                             }
 
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::getUserAction',  '_format' => 'json',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_user')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\UserController::getUserAction',  '_format' => 'json',));
                         }
                         not_get_user:
 
@@ -415,7 +425,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                                 goto not_post_user;
                             }
 
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::postUserAction',  '_format' => 'json',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_user')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\UserController::postUserAction',  '_format' => 'json',));
                         }
                         not_post_user:
 
@@ -428,7 +438,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                             goto not_put_user;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::putUserAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_user')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\UserController::putUserAction',  '_format' => 'json',));
                     }
                     not_put_user:
 
@@ -441,7 +451,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         goto not_post_connect;
                     }
 
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_connect')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\UserController::postConnectAction',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_connect')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\UserController::postConnectAction',  '_format' => 'json',));
                 }
                 not_post_connect:
 
@@ -452,7 +462,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         goto not_get_users;
                     }
 
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_users')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\RechercheController::getUsersAction',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_users')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\RechercheController::getUsersAction',  '_format' => 'json',));
                 }
                 not_get_users:
 
@@ -463,7 +473,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         goto not_post_recherche_username;
                     }
 
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_recherche_username')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\RechercheController::postRechercheUsernameAction',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_recherche_username')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\RechercheController::postRechercheUsernameAction',  '_format' => 'json',));
                 }
                 not_post_recherche_username:
 
@@ -474,7 +484,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         goto not_get_friends;
                     }
 
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_friends')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\FriendsController::getFriendsAction',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_friends')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\FriendsController::getFriendsAction',  '_format' => 'json',));
                 }
                 not_get_friends:
 
@@ -485,7 +495,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                         goto not_post_recherche_pas_ami;
                     }
 
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_recherche_pas_ami')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\FriendsController::postRecherchePasAmiAction',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_recherche_pas_ami')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\FriendsController::postRecherchePasAmiAction',  '_format' => 'json',));
                 }
                 not_post_recherche_pas_ami:
 
@@ -497,7 +507,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                             goto not_post_demande_ami;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_demande_ami')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\FriendsController::postDemandeAmiAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_demande_ami')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\FriendsController::postDemandeAmiAction',  '_format' => 'json',));
                     }
                     not_post_demande_ami:
 
@@ -508,7 +518,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                             goto not_post_demande_liste_ami;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_demande_liste_ami')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\FriendsController::postDemandeListeAmiAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_demande_liste_ami')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\FriendsController::postDemandeListeAmiAction',  '_format' => 'json',));
                     }
                     not_post_demande_liste_ami:
 
@@ -523,7 +533,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                                 goto not_get_notifications;
                             }
 
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notifications')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_format' => 'json',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notifications')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\NotificationController::getNotificationsAction',  '_format' => 'json',));
                         }
                         not_get_notifications:
 
@@ -534,7 +544,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                                 goto not_get_notification;
                             }
 
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::getNotificationAction',  '_format' => 'json',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_notification')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\NotificationController::getNotificationAction',  '_format' => 'json',));
                         }
                         not_get_notification:
 
@@ -545,7 +555,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                                 goto not_post_notification_user;
                             }
 
-                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_notification_user')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::postNotificationUserAction',  '_format' => 'json',));
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_notification_user')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\NotificationController::postNotificationUserAction',  '_format' => 'json',));
                         }
                         not_post_notification_user:
 
@@ -558,7 +568,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                             goto not_put_notification;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_notification')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\NotificationController::putNotificationAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'put_notification')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\NotificationController::putNotificationAction',  '_format' => 'json',));
                     }
                     not_put_notification:
 
@@ -572,7 +582,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                             goto not_get_profils;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_profils')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\ProfilController::getProfilsAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_profils')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\ProfilController::getProfilsAction',  '_format' => 'json',));
                     }
                     not_get_profils:
 
@@ -583,7 +593,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                             goto not_get_profil;
                         }
 
-                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_profil')), array (  '_controller' => 'SubwayBuddy\\UserBundle\\Controller\\ProfilController::getProfilAction',  '_format' => 'json',));
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_profil')), array (  '_controller' => 'Soccer\\UserBundle\\Controller\\ProfilController::getProfilAction',  '_format' => 'json',));
                     }
                     not_get_profil:
 
@@ -591,7 +601,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
 
                 // website_test
                 if (0 === strpos($pathinfo, '/api/test') && preg_match('#^/api/test(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'website_test')), array (  '_controller' => 'SubwayBuddyUserBundle:Default:index',  '_format' => 'json',));
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'website_test')), array (  '_controller' => 'SoccerUserBundle:Default:index',  '_format' => 'json',));
                 }
 
                 if (0 === strpos($pathinfo, '/api/event')) {
@@ -931,6 +941,92 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_match')), array (  '_controller' => 'Soccer\\TeamBundle\\Controller\\MatchController::postMatchAction',  '_format' => 'json',));
                 }
                 not_post_match:
+
+                if (0 === strpos($pathinfo, '/api/commentaires')) {
+                    // get_commentaires
+                    if (preg_match('#^/api/commentaires(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_commentaires;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_commentaires')), array (  '_controller' => 'Soccer\\CommentBundle\\Controller\\CommentaireController::getCommentairesAction',  '_format' => 'json',));
+                    }
+                    not_get_commentaires:
+
+                    // get_commentaire
+                    if (preg_match('#^/api/commentaires/(?P<commentaire>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_commentaire;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_commentaire')), array (  '_controller' => 'Soccer\\CommentBundle\\Controller\\CommentaireController::getCommentaireAction',  '_format' => 'json',));
+                    }
+                    not_get_commentaire:
+
+                    // post_commentaire
+                    if (preg_match('#^/api/commentaires(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_commentaire;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_commentaire')), array (  '_controller' => 'Soccer\\CommentBundle\\Controller\\CommentaireController::postCommentaireAction',  '_format' => 'json',));
+                    }
+                    not_post_commentaire:
+
+                    // post_commentaire_by_match
+                    if (0 === strpos($pathinfo, '/api/commentaires/bies/matches') && preg_match('#^/api/commentaires/bies/matches(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if ($this->context->getMethod() != 'POST') {
+                            $allow[] = 'POST';
+                            goto not_post_commentaire_by_match;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_commentaire_by_match')), array (  '_controller' => 'Soccer\\CommentBundle\\Controller\\CommentaireController::postCommentaireByMatchAction',  '_format' => 'json',));
+                    }
+                    not_post_commentaire_by_match:
+
+                }
+
+                if (0 === strpos($pathinfo, '/api/badge')) {
+                    if (0 === strpos($pathinfo, '/api/badges')) {
+                        // get_badges
+                        if (preg_match('#^/api/badges(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_get_badges;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_badges')), array (  '_controller' => 'Soccer\\EvolutionBundle\\Controller\\BadgeController::getBadgesAction',  '_format' => 'json',));
+                        }
+                        not_get_badges:
+
+                        // get_badge
+                        if (preg_match('#^/api/badges/(?P<badge>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                                $allow = array_merge($allow, array('GET', 'HEAD'));
+                                goto not_get_badge;
+                            }
+
+                            return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_badge')), array (  '_controller' => 'Soccer\\EvolutionBundle\\Controller\\BadgeController::getBadgeAction',  '_format' => 'json',));
+                        }
+                        not_get_badge:
+
+                    }
+
+                    // get_badge_user
+                    if (0 === strpos($pathinfo, '/api/badge_users') && preg_match('#^/api/badge_users/(?P<user>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                        if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                            $allow = array_merge($allow, array('GET', 'HEAD'));
+                            goto not_get_badge_user;
+                        }
+
+                        return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_badge_user')), array (  '_controller' => 'Soccer\\EvolutionBundle\\Controller\\BadgeController::getBadge_userAction',  '_format' => 'json',));
+                    }
+                    not_get_badge_user:
+
+                }
 
             }
 

@@ -4,7 +4,7 @@ namespace Soccer\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\UserBundle\Entity\User;
 
 /**
  * Event
@@ -36,7 +36,7 @@ class NoteEvent
   
       
        /**
-    * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+    * @ORM\ManyToOne(targetEntity="Soccer\UserBundle\Entity\User")
     */
      private $user; 
      
@@ -93,11 +93,11 @@ class NoteEvent
     /**
      * Set user
      *
-     * @param \SubwayBuddy\UserBundle\Entity\User $user
+     * @param \Soccer\UserBundle\Entity\User $user
      *
      * @return NoteEvent
      */
-    public function setUser(\SubwayBuddy\UserBundle\Entity\User $user = null)
+    public function setUser(\Soccer\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -107,7 +107,7 @@ class NoteEvent
     /**
      * Get user
      *
-     * @return \SubwayBuddy\UserBundle\Entity\User
+     * @return \Soccer\UserBundle\Entity\User
      */
     public function getUser()
     {

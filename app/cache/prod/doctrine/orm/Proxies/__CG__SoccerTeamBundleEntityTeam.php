@@ -213,7 +213,7 @@ class Team extends \Soccer\TeamBundle\Entity\Team implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addJoueur(\SubwayBuddy\UserBundle\Entity\User $joueur)
+    public function addJoueur(\Soccer\UserBundle\Entity\User $joueur)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addJoueur', array($joueur));
@@ -224,7 +224,7 @@ class Team extends \Soccer\TeamBundle\Entity\Team implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
-    public function removeJoueur(\SubwayBuddy\UserBundle\Entity\User $joueur)
+    public function removeJoueur(\Soccer\UserBundle\Entity\User $joueur)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeJoueur', array($joueur));
@@ -279,7 +279,7 @@ class Team extends \Soccer\TeamBundle\Entity\Team implements \Doctrine\ORM\Proxy
     /**
      * {@inheritDoc}
      */
-    public function containJoueur(\SubwayBuddy\UserBundle\Entity\User $user)
+    public function containJoueur(\Soccer\UserBundle\Entity\User $user)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'containJoueur', array($user));

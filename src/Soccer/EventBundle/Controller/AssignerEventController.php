@@ -8,9 +8,9 @@ use FOS\RestBundle\View\View as Vieww;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
 use Soccer\EventBundle\Entity\Event;
-use SubwayBuddy\UserBundle\Entity\Notification;
+use Soccer\UserBundle\Entity\Notification;
 use Soccer\EventBundle\Entity\UserEvent;
-use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\UserBundle\Entity\User;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -68,7 +68,7 @@ class AssignerEventController extends FOSRestController
              $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
             ; 
              
               $repositoryStatus = $this
@@ -176,7 +176,7 @@ class AssignerEventController extends FOSRestController
              $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
             ; 
              
               $repositoryStatus = $this
@@ -269,14 +269,14 @@ class AssignerEventController extends FOSRestController
              $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
             ; 
             
             
             $repositoryTypeNotification = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:TypeNotification')
+            ->getRepository('SoccerUserBundle:TypeNotification')
             ; 
              
               $repositoryStatus = $this
@@ -415,7 +415,7 @@ class AssignerEventController extends FOSRestController
              $repository = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
             ; 
              
               $repositoryStatus = $this

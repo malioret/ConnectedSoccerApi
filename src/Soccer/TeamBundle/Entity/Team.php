@@ -4,7 +4,7 @@ namespace Soccer\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\UserBundle\Entity\User;
 use Soccer\EventBundle\Entity\UserEvent;
 use Soccer\EventBundle\Entity\Event;
 /**
@@ -86,7 +86,7 @@ class Team
 
     
      /**
-    * @ORM\ManyToMany(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="teams" )
+    * @ORM\ManyToMany(targetEntity="Soccer\UserBundle\Entity\User", inversedBy="teams" )
     */
      private $joueurs; 
     

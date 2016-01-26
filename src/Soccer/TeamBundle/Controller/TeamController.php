@@ -7,7 +7,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Request\ParamFetcher;
 use FOS\RestBundle\Controller\FOSRestController;
-use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\UserBundle\Entity\User;
 use Soccer\TeamBundle\Entity\Team;
 use Soccer\TeamBundle\Entity\Match;
 use Soccer\TeamBundle\Entity\UserMatch;
@@ -109,7 +109,7 @@ class TeamController extends FOSRestController
         $repositoryUser = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SubwayBuddyUserBundle:User')
+            ->getRepository('SoccerUserBundle:User')
         ;  
         
        

@@ -1,0 +1,6 @@
+services:
+    admin.customer:
+        class: Soccer\UserBundle\Admin\UserAdmin
+        arguments: [~, Soccer\UserBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Utilisateur, group: Utilisateurs }

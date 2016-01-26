@@ -11,12 +11,12 @@ class __TwigTemplate_1a3497dbdc47dbab24f5473980d0ea228ac744d1904dba42e17a0bd3fae
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_8953c0d914c5c69e19f33a48fc2bb5ec5d224f24b0b906d78fe4b2e486e5ac72 = $this->env->getExtension("native_profiler");
-        $__internal_8953c0d914c5c69e19f33a48fc2bb5ec5d224f24b0b906d78fe4b2e486e5ac72->enter($__internal_8953c0d914c5c69e19f33a48fc2bb5ec5d224f24b0b906d78fe4b2e486e5ac72_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataAdminBundle:CRUD:list_string.html.twig"));
+        $__internal_98af39fc77effc2c7143622af9e69395fe8b34805b6226953fe9fcd42fd51ddc = $this->env->getExtension("native_profiler");
+        $__internal_98af39fc77effc2c7143622af9e69395fe8b34805b6226953fe9fcd42fd51ddc->enter($__internal_98af39fc77effc2c7143622af9e69395fe8b34805b6226953fe9fcd42fd51ddc_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "SonataAdminBundle:CRUD:list_string.html.twig"));
 
         $this->getParent($context)->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_8953c0d914c5c69e19f33a48fc2bb5ec5d224f24b0b906d78fe4b2e486e5ac72->leave($__internal_8953c0d914c5c69e19f33a48fc2bb5ec5d224f24b0b906d78fe4b2e486e5ac72_prof);
+        $__internal_98af39fc77effc2c7143622af9e69395fe8b34805b6226953fe9fcd42fd51ddc->leave($__internal_98af39fc77effc2c7143622af9e69395fe8b34805b6226953fe9fcd42fd51ddc_prof);
 
     }
 

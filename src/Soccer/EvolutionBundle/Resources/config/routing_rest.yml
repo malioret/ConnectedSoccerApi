@@ -1,0 +1,4 @@
+badges:
+    type:   rest
+    resource:   "@SoccerEvolutionBundle/Controller/BadgeController.php"
+    

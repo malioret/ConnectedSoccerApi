@@ -5,7 +5,7 @@
     
 Rest_User : 
   type : rest
-  resource: "@SubwayBuddyUserBundle/Resources/config/routing_rest.yml"
+  resource: "@SoccerUserBundle/Resources/config/routing_rest.yml"
   
   
     
@@ -18,3 +18,17 @@ Rest_Event :
 Rest_Team : 
   type : rest
   resource: "@SoccerTeamBundle/Resources/config/routing_rest.yml"
+  
+  
+  
+    
+Rest_Comment : 
+  type : rest
+  resource: "@SoccerCommentBundle/Resources/config/routing_rest.yml"
+  
+  
+
+    
+Rest_Evolution : 
+  type : rest
+  resource: "@SoccerEvolutionBundle/Resources/config/routing_rest.yml"

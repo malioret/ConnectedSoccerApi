@@ -1,0 +1,185 @@
+<?php
+
+namespace Soccer\CommentBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\EventBundle\Entity\UserEvent;
+use Soccer\EventBundle\Entity\Event;
+use Soccer\TeamBundle\Entity\Team;
+use Soccer\TeamBundle\Entity\But;
+use Soccer\TeamBundle\Entity\Match;
+
+/**
+ * Event
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Soccer\CommentBundle\Entity\CommentaireRepository")
+ */
+class Commentaire
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+
+/**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string",  length=255)
+     *
+     */
+    private $message;
+   
+   
+   /**
+     * @var date
+     *
+     * @ORM\Column(name="date_creation", type="date")
+     *
+     */
+    private $date_creation;
+    
+    
+          /**
+       * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+       * @ORM\JoinColumn(nullable=true)
+       */
+      private $user;
+    
+    
+    
+    /**
+   * @ORM\ManyToOne(targetEntity="Soccer\EventBundle\Entity\Event", inversedBy="commentaires")
+   */
+     private $event;
+    
+     
+    /**
+   * @ORM\ManyToOne(targetEntity="Soccer\TeamBundle\Entity\Match", inversedBy="commentaires")
+   */
+     private $match;
+    
+    
+    public function __construct()
+    {
+       
+         
+          $this->date_creation=new \DateTime();
+         
+    }
+   
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     *
+     * @return Commentaire
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param string $dateCreation
+     *
+     * @return Commentaire
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->date_creation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return string
+     */
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \SubwayBuddy\UserBundle\Entity\User $user
+     *
+     * @return Commentaire
+     */
+    public function setUser(\SubwayBuddy\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \SubwayBuddy\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set event
+     *
+     * @param \Soccer\EventBundle\Entity\Event $event
+     *
+     * @return Commentaire
+     */
+    public function setEvent(\Soccer\EventBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Soccer\EventBundle\Entity\Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+}

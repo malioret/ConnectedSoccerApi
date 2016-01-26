@@ -1,0 +1,13 @@
+Soccer\CommentBundle\Entity\Commentaire:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        message:
+            expose: true
+        date_creation:
+            expose: true
+        user:
+            expose: true
+        
+       

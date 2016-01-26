@@ -4,7 +4,7 @@ namespace Soccer\TeamBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\UserBundle\Entity\User;
 use Soccer\TeamBundle\Entity\Match;
 use Soccer\TeamBundle\Entity\Team;
 /**
@@ -58,7 +58,7 @@ class UserMatch
   private $match;
 
   /**
-   * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User", inversedBy="matchs", cascade={"persist"})
+   * @ORM\ManyToOne(targetEntity="Soccer\UserBundle\Entity\User", inversedBy="matchs", cascade={"persist"})
    * @ORM\JoinColumn(nullable=false)
    */
   private $user;
@@ -113,11 +113,11 @@ class UserMatch
     /**
      * Set user
      *
-     * @param \SubwayBuddy\UserBundle\Entity\User $user
+     * @param \Soccer\UserBundle\Entity\User $user
      *
      * @return UserMatch
      */
-    public function setUser(\SubwayBuddy\UserBundle\Entity\User $user)
+    public function setUser(\Soccer\UserBundle\Entity\User $user)
     {
         $this->user = $user;
 
@@ -127,7 +127,7 @@ class UserMatch
     /**
      * Get user
      *
-     * @return \SubwayBuddy\UserBundle\Entity\User
+     * @return \Soccer\UserBundle\Entity\User
      */
     public function getUser()
     {

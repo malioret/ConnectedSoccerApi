@@ -213,7 +213,7 @@ class NoteEvent extends \Soccer\EventBundle\Entity\NoteEvent implements \Doctrin
     /**
      * {@inheritDoc}
      */
-    public function setUser(\SubwayBuddy\UserBundle\Entity\User $user = NULL)
+    public function setUser(\Soccer\UserBundle\Entity\User $user = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));

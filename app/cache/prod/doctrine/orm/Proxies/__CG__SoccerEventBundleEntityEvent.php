@@ -64,10 +64,10 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isValidate', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'terrain', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'type');
+            return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isValidate', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'terrain', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'type', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'commentaires');
         }
 
-        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isValidate', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'terrain', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'type');
+        return array('__isInitialized__', 'id', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nom', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'date', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'dateCreation', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isGenerated', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'isValidate', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'nombreJoueurs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'matchs', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'amis', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'teams', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'admin', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'terrain', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'type', '' . "\0" . 'Soccer\\EventBundle\\Entity\\Event' . "\0" . 'commentaires');
     }
 
     /**
@@ -422,7 +422,7 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
     /**
      * {@inheritDoc}
      */
-    public function setAdmin(\SubwayBuddy\UserBundle\Entity\User $admin = NULL)
+    public function setAdmin(\Soccer\UserBundle\Entity\User $admin = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdmin', array($admin));
@@ -483,6 +483,39 @@ class Event extends \Soccer\EventBundle\Entity\Event implements \Doctrine\ORM\Pr
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getType', array());
 
         return parent::getType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCommentaire', array($commentaire));
+
+        return parent::addCommentaire($commentaire);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCommentaire', array($commentaire));
+
+        return parent::removeCommentaire($commentaire);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCommentaires()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCommentaires', array());
+
+        return parent::getCommentaires();
     }
 
 }

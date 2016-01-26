@@ -1,0 +1,3 @@
+soccer_evolution_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SoccerEvolutionBundle:Default:index }

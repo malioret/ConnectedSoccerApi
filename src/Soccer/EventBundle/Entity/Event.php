@@ -4,7 +4,7 @@ namespace Soccer\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use SubwayBuddy\UserBundle\Entity\User;
+use Soccer\UserBundle\Entity\User;
 use Soccer\EventBundle\Entity\UserEvent;
 use Soccer\EventBundle\Entity\Event;
 use Soccer\TeamBundle\Entity\Team;
@@ -106,7 +106,7 @@ class Event
      private $teams; 
      
     /**
-    * @ORM\ManyToOne(targetEntity="SubwayBuddy\UserBundle\Entity\User")
+    * @ORM\ManyToOne(targetEntity="Soccer\UserBundle\Entity\User")
     */
      private $admin; 
      
@@ -124,12 +124,23 @@ class Event
   private $type;
    
    
+   
+   /**
+   * @ORM\OneToMany(targetEntity="Soccer\CommentBundle\Entity\Commentaire", mappedBy="event")
+   */
+     private $commentaires;
+   
+   
+   
+   
+   
     public function __construct()
     {
        
          $this->amis = new ArrayCollection();
          $this->teams = new ArrayCollection();
         $this->matchs = new ArrayCollection();
+         $this->commentaires = new ArrayCollection();
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
           $this->isValidate=0;
@@ -373,11 +384,11 @@ class Event
     /**
      * Set admin
      *
-     * @param \SubwayBuddy\UserBundle\Entity\User $admin
+     * @param \Soccer\UserBundle\Entity\User $admin
      *
      * @return Event
      */
-    public function setAdmin(\SubwayBuddy\UserBundle\Entity\User $admin = null)
+    public function setAdmin(\Soccer\UserBundle\Entity\User $admin = null)
     {
         $this->admin = $admin;
 
@@ -387,7 +398,7 @@ class Event
     /**
      * Get admin
      *
-     * @return \SubwayBuddy\UserBundle\Entity\User
+     * @return \Soccer\UserBundle\Entity\User
      */
     public function getAdmin()
     {
@@ -440,5 +451,39 @@ class Event
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Add commentaire
+     *
+     * @param \Soccer\CommentBundle\Entity\Commentaire $commentaire
+     *
+     * @return Event
+     */
+    public function addCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires[] = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Remove commentaire
+     *
+     * @param \Soccer\CommentBundle\Entity\Commentaire $commentaire
+     */
+    public function removeCommentaire(\Soccer\CommentBundle\Entity\Commentaire $commentaire)
+    {
+        $this->commentaires->removeElement($commentaire);
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
     }
 }

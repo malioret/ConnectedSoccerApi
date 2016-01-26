@@ -1,0 +1,12 @@
+Soccer\EvolutionBundle\Entity\Badge:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        type:
+            expose: true
+        date_obtention:
+            expose: true
+        user:
+            expose: true
+       

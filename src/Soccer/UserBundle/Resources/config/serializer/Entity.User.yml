@@ -1,0 +1,26 @@
+Soccer\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        username:
+            expose: true
+        email:
+            expose: true
+        nom:
+            expose: true
+        niveau:
+            expose: true    
+        postes:
+            expose: true
+        profils:
+            expose: true
+        buts:
+            expose: true
+        password:
+            expose: false
+
+
+            
+            
+       
