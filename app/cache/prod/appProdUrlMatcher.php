@@ -28,6 +28,11 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $request = $this->request;
 
         if (0 === strpos($pathinfo, '/hello')) {
+            // soccer_stat_homepage
+            if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_stat_homepage')), array (  '_controller' => 'Soccer\\StatBundle\\Controller\\DefaultController::indexAction',));
+            }
+
             // soccer_evolution_homepage
             if (preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'soccer_evolution_homepage')), array (  '_controller' => 'Soccer\\EvolutionBundle\\Controller\\DefaultController::indexAction',));
@@ -1027,6 +1032,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
                     not_get_badge_user:
 
                 }
+
+                // get_stat
+                if (0 === strpos($pathinfo, '/api/stats') && preg_match('#^/api/stats/(?P<user>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                        $allow = array_merge($allow, array('GET', 'HEAD'));
+                        goto not_get_stat;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'get_stat')), array (  '_controller' => 'Soccer\\StatBundle\\Controller\\StatController::getStatAction',  '_format' => 'json',));
+                }
+                not_get_stat:
 
             }
 

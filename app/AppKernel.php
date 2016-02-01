@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new Soccer\UtilBundle\SoccerUtilBundle(),
             new Soccer\CommentBundle\SoccerCommentBundle(),
             new Soccer\EvolutionBundle\SoccerEvolutionBundle(),
+            new Soccer\StatBundle\SoccerStatBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,0 +1,4 @@
+stats:
+    type:   rest
+    resource:   "@SoccerStatBundle/Controller/StatController.php"
+    

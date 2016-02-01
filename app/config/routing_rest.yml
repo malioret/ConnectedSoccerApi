@@ -32,3 +32,10 @@ Rest_Comment :
 Rest_Evolution : 
   type : rest
   resource: "@SoccerEvolutionBundle/Resources/config/routing_rest.yml"
+  
+  
+
+    
+Rest_Stat : 
+  type : rest
+  resource: "@SoccerStatBundle/Resources/config/routing_rest.yml"

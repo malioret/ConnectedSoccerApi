@@ -1,3 +1,7 @@
+soccer_stat:
+    resource: "@SoccerStatBundle/Resources/config/routing.yml"
+    prefix:   /
+
 soccer_evolution:
     resource: "@SoccerEvolutionBundle/Resources/config/routing.yml"
     prefix:   /

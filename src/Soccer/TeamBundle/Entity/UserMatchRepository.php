@@ -29,5 +29,29 @@ class UserMatchRepository extends \Doctrine\ORM\EntityRepository
         
       ;
     }
+    
+    
+    
+     public function findMatchFinished($user)
+    {
+      $query= $this
+        ->createQueryBuilder('u')
+        ->join("u.match","m")
+        ->addSelect('m')
+         ->where("u.user=:user and m.isFinished=1")
+        
+         ->setParameter(':user',$user)
+         ->orderBy('u.id', 'ASC')
+        ->getQuery()
+        ;
+          try {
+        return $query->getResult();
+    } catch (\Doctrine\ORM\NoResultException $e) {
+        return null;
+    }
+        
+        
+      ;
+    }
 
 }

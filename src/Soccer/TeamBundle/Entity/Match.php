@@ -395,4 +395,22 @@ class Match
     {
         return $this->commentaires;
     }
+    
+    
+    
+    
+    public function getWinner()
+    {
+        if($this->scoreTeam1>$this->scoreTeam2)
+        {
+            return 0;
+        }
+        else if($this->scoreTeam1<$this->scoreTeam2)
+        {
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    }
 }

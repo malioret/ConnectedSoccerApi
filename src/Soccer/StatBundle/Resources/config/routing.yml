@@ -1,0 +1,3 @@
+soccer_stat_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SoccerStatBundle:Default:index }
