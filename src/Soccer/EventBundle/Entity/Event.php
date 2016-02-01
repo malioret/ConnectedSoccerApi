@@ -77,6 +77,17 @@ class Event
      *
      */
     private $isValidate;
+    
+    
+    
+     /**
+     * @var isFinished
+     *
+     * @ORM\Column(name="isFinished", type="integer")
+     *
+     */
+    private $isFinished;
+    
    
    
    /**
@@ -144,6 +155,7 @@ class Event
           $this->isGenerated=0;
           $this->dateCreation=new \DateTime();
           $this->isValidate=0;
+          $this->isFinished=0;
     }
    
 
@@ -168,6 +180,47 @@ class Event
   {
     return $this->matchs;
   }
+
+
+
+    
+    /**
+     * Get isFinished
+     *
+     * @return integer
+     */
+    public function getIsFinished()
+    {
+      
+        $this->isFinished=1;
+        foreach($this->matchs as $match)
+        {
+            if($match->getIsFinished()==false)
+            {
+                $finish=false;
+                 $this->isFinished=0;
+            }
+            
+        }
+        
+        return $this->isFinished;
+    }
+
+
+
+      /**
+     * Set isFinished
+     *
+     * @param integer $isFinished
+     *
+     * @return Event
+     */
+    public function setIsFinished($isFinished)
+    {
+        $this->isFinished = $isFinished;
+
+        return $this;
+    }
 
 
 
@@ -486,4 +539,6 @@ class Event
     {
         return $this->commentaires;
     }
-}
+
+  
+ }

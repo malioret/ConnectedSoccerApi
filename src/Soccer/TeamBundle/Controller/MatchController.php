@@ -271,6 +271,21 @@ class MatchController extends FOSRestController
           
         }//fin for
         
+            
+            //on persist les matchs
+            $match->setIsFinished(true);
+             $em->persist($match);
+            $em->flush();
+       
+       
+       
+            //On regarde si l'event est terminé après la saisie du match
+            $event=$match->getEvent();
+            $event->getIsFinished();
+            $em->persist($event);
+            $em->flush();
+       
+       
        
             $view->setData($match)->setStatusCode(200);
             return $view;

@@ -17,4 +17,6 @@ Soccer\EventBundle\Entity\Event:
             expose: true
         type:
             expose: true
+        isFinished:
+            expose: true
        
